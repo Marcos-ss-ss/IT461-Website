@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+
+<body>
+<nav class="sidebar">
+    <div class="logo">WDS</div>
+
+    <ul class="nav-menu">
+        <li><a href="MainPage.html">Home</a></li>
+
+       <li><a href="Contact.html">Contact Us</a></li>
+       
+        <li><a href="Services.html">Services</a></li>
+
+        <li><a href="pricing.html">Pricing</a></li>
+    </ul>
+</nav>
+ <!-- MAIN CONTENT AREA -->
+  <div class="main-service">
+    <h1>Contact Info</h1>
+    <p>Questions, pricing, or pickup & delivery? Reach out anytime.</p>
+
+    <div class="services-container">
+      <div class="service-box">
+        <h3> Call / Email</h3>
+        <p><strong>Phone:</strong> <a href="tel:+11234567890">(123) 456-7890</a></p>
+        <p><strong>Email:</strong> <a href="mailto:washingwds@gmail.com">washingwds@gmail.com</a></p>
+
+      </div>
+
+      <div class="service-box">
+        <h3> Location / Hours</h3>
+        <p>
+          <strong>Address:</strong><br />
+          123 Bay Street<br />
+          Boston, MA 02125
+        </p>
+
+        <p style="margin-top:14px;">
+          <strong>Hours:</strong><br />
+          Mon–Fri: 8:00 AM – 8:00 PM<br />
+          Sat: 9:00 AM – 6:00 PM<br />
+          Sun: Closed
+        </p>
+
+      </div>
+
+      <div class="service-box">
+        <h3> Send a Message</h3>
+
+<!--Contact form-->
+        <form class="contact-form" 
+      action="https://formspree.io/f/mdalqayg" 
+      method="POST">
+
+  <label for="name">Name</label>
+  <input id="name" name="name" type="text" placeholder="Your name" required />
+
+  <label for="email">Email</label>
+  <input id="email" name="email" type="email" placeholder="you@email.com" required />
+
+  <label for="subject">Subject</label>
+  <input id="subject" name="subject" type="text" placeholder="What is this about?" />
+
+  <label for="message">Message</label>
+  <textarea id="message" name="message" rows="6" placeholder="Write your message..." required></textarea>
+
+  <div style="margin-top:16px;">
+    <button class="cta-btn" type="submit">Send</button>
+  </div>
+
+  <div class="contact-note">We usually respond within 1 business day.</div>
+</form>
+      </div> 
+    </div>
+
+<!-- Script to clear out textboxes after submitting message form-->
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector(".contact-form");
+
+  form.addEventListener("submit", async function (event) {
+    event.preventDefault(); // stop default redirect
+
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        form.reset(); // ✅ clears textboxes
+        alert("Message sent successfully!");
+      } else {
+        alert("Oops! Something went wrong.");
+      }
+    } catch (error) {
+      alert("Network error. Please try again.");
+    }
+  });
+});
+</script>
+</body>
+</html>
