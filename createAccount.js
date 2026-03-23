@@ -8,7 +8,7 @@ const phone = document.getElementById("phone").value;
 const email = document.getElementById("email").value;
 const password = document.getElementById("password").value;
 
-fetch("/createAccount",{
+fetch("https://lidia-nonsymbolic-brett.ngrok-free.app/register",{
 
 method:"POST",
 
