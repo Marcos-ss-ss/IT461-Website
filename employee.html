@@ -134,15 +134,15 @@
     <h1>Employee Dashboard</h1>
     <p id="welcomeMsg">Welcome back!</p>
     <div class="dash-cards">
-      <div class="dash-card" onclick="showSection('orders')">
-        <div class="card-icon">📋</div><h3>View Orders</h3>
-        <p>See all pending and completed customer orders</p>
-      </div>
-      <div class="dash-card" onclick="showSection('create')">
+        <div class="dash-card" onclick="showSection('create')">
         <div class="card-icon">➕</div><h3>Create Order</h3>
         <p>Create an order for a walk-in customer</p>
       </div>
-      <div class="dash-card" onclick="showSection('inventory')">
+        <div class="dash-card" onclick="showSection('orders')">
+        <div class="card-icon">📋</div><h3>View Orders</h3>
+        <p>See all pending and completed customer orders</p>
+      </div>
+        <div class="dash-card" onclick="showSection('inventory')">
         <div class="card-icon">📦</div><h3>Vendors & Inventory</h3>
         <p>View inventory levels and vendor information</p>
       </div>
@@ -150,20 +150,6 @@
         <div class="card-icon">📊</div><h3>Sales & Revenue</h3>
         <p>View sales by day, week, month and quarter</p>
       </div>
-    </div>
-  </div>
-
-  <!-- ORDERS VIEW -->
-  <div class="section-view" id="ordersView">
-    <div class="section-header">
-      <button class="back-btn" onclick="showSection('home')">← Back</button>
-      <h2>📋 All Orders</h2>
-    </div>
-    <div id="ordersPanel">
-      <div class="orders-section-title">Active Orders</div>
-      <div id="activeOrders"><p>Loading...</p></div>
-      <div class="orders-section-title">Completed / Cancelled</div>
-      <div id="completedOrders"></div>
     </div>
   </div>
 
@@ -196,6 +182,20 @@
           <div id="workerOrderMsg" style="margin-top:12px; font-weight:700;"></div>
         </div>
       </div>
+    </div>
+  </div>
+  
+  <!-- ORDERS VIEW -->
+  <div class="section-view" id="ordersView">
+    <div class="section-header">
+      <button class="back-btn" onclick="showSection('home')">← Back</button>
+      <h2>📋 All Orders</h2>
+    </div>
+    <div id="ordersPanel">
+      <div class="orders-section-title">Active Orders</div>
+      <div id="activeOrders"><p>Loading...</p></div>
+      <div class="orders-section-title">Completed / Cancelled</div>
+      <div id="completedOrders"></div>
     </div>
   </div>
 
