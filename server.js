@@ -136,6 +136,7 @@ app.post('/register', async (req, res) => {
 // POST /login
 app.post('/login', async (req, res) => {
   const { identifier, password } = req.body;
+  const cleanIdentifier = identifier.trim().toLowerCase();
   if (!identifier || !password) {
     return res.status(400).json({ error: 'identifier and password are required' });
   }
@@ -146,8 +147,8 @@ app.post('/login', async (req, res) => {
 
         const result = await db.query(
       `SELECT id, first_name, last_name, phone, email, password_hash, role
-       FROM users WHERE ${field} = $1`,
-      [identifier]
+       FROM users WHERE LOWER(${field}) = LOWER($1)`,
+      [cleanIdentifier]
     );
 
     if (result.rows.length === 0) {
