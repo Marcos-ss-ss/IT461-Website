@@ -13,33 +13,43 @@
     }
     body { font-family: 'Nunito', sans-serif; background: var(--gray); color: var(--text); display: flex; min-height: 100vh; }
 
+    /* ── SIDEBAR ── */
     .sidebar {
       width: 200px; min-height: 100vh; background: var(--navy);
       display: flex; flex-direction: column; align-items: center;
-      padding: 0 0 30px 0; position: fixed; top: 0; left: 0; z-index: 100;
+      padding: 0; position: fixed; top: 0; left: 0; z-index: 100;
     }
     .sidebar .logo-btn {
       width: 100%; display: block; background: var(--blue);
-      padding: 18px 10px; text-align: center; cursor: pointer;
-      text-decoration: none; border-bottom: 3px solid rgba(0,0,0,0.2);
-      transition: background 0.2s;
+      padding: 18px 10px; text-align: center; text-decoration: none;
+      border-bottom: 3px solid rgba(0,0,0,0.2); transition: background 0.2s; flex-shrink: 0;
     }
     .sidebar .logo-btn img { max-width: 150px; height: auto; display: block; margin: 0 auto; }
     .sidebar .logo-btn:hover { background: var(--blue-bright); }
 
-    .sidebar ul { list-style: none; width: 100%; padding: 20px 0; }
-    .sidebar ul li { width: 100%; margin-bottom: 15px; }
-    .sidebar ul li a {
+    .sidebar .nav-top { list-style: none; width: 100%; padding: 20px 0; flex: 1; }
+    .sidebar .nav-top li { width: 100%; margin-bottom: 14px; }
+    .sidebar .nav-top li a {
       display: block; text-align: center; padding: 12px 16px; margin: 0 16px;
       background: var(--blue); color: var(--white); text-decoration: none;
       font-weight: 700; font-size: 0.88rem; border-radius: 8px;
       transition: background 0.2s, transform 0.2s; line-height: 1.3;
     }
-    .sidebar ul li a:hover { background: var(--blue-bright); transform: translateX(4px); }
-    .sidebar ul li.divider { height: 2px; background: rgba(255,255,255,0.15); margin: 6px 16px; }
-    .sidebar ul li a.employee-btn { background: #1a2a3a; border: 1px solid #2c4a6a; }
-    .sidebar ul li a.employee-btn:hover { background: #243545; }
+    .sidebar .nav-top li a:hover { background: var(--blue-bright); transform: translateX(4px); }
 
+    .sidebar .nav-bottom {
+      width: 100%; padding: 0 0 20px 0; flex-shrink: 0;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .sidebar .nav-bottom a {
+      display: block; text-align: center; padding: 12px 16px; margin: 16px 16px 0;
+      background: #1a2a3a; color: var(--white); text-decoration: none;
+      font-weight: 700; font-size: 0.88rem; border-radius: 8px;
+      border: 1px solid #2c4a6a; transition: background 0.2s, transform 0.2s;
+    }
+    .sidebar .nav-bottom a:hover { background: #243545; transform: translateX(4px); }
+
+    /* ── MAIN ── */
     .main-content { margin-left: 200px; flex: 1; display: flex; flex-direction: column; }
 
     .hero {
@@ -97,16 +107,15 @@
 </head>
 <body>
 <nav class="sidebar">
-  <a href="index.html" class="logo-btn">
-    <img src="WDS-Logo.png" alt="WDS Home">
-  </a>
-  <ul>
+  <a href="index.html" class="logo-btn"><img src="WDS-Logo.png" alt="WDS Home"></a>
+  <ul class="nav-top">
     <li><a href="login.html">Login / Create Order</a></li>
     <li><a href="pricing.html">Our Services</a></li>
     <li><a href="Contact.html">Contact Us</a></li>
-    <li class="divider"></li>
-    <li><a href="worker.html" class="employee-btn">Employees</a></li>
   </ul>
+  <div class="nav-bottom">
+    <a href="employee.html">Employees</a>
+  </div>
 </nav>
 
 <div class="main-content">
@@ -115,25 +124,21 @@
     <div class="hero-logo"><img src="WDS-Logo.png" alt="Wash & Dry-Cleaning Shop"></div>
     <div class="promo-bubble right">24-Hour<br>Drop Box<br>Available</div>
   </div>
-
   <div class="tagline-bar">
     <h1>Professional Wash & Dry-Cleaning Services</h1>
     <p>Fast. &nbsp; Reliable. &nbsp; Affordable.</p>
   </div>
-
   <div class="services-strip">
     <div class="service-icon-box" onclick="window.location.href='pricing.html'"><div class="icon">👔</div><span>Dry-Cleaning</span></div>
     <div class="service-icon-box" onclick="window.location.href='pricing.html'"><div class="icon">🧺</div><span>Bulk Wash / lb</span></div>
     <div class="service-icon-box" onclick="window.location.href='pricing.html'"><div class="icon">👕</div><span>Steam Press</span></div>
     <div class="service-icon-box" onclick="window.location.href='pricing.html'"><div class="icon">👗</div><span>Wedding Gown</span></div>
   </div>
-
   <div class="cta-section">
     <h2>Ready to Schedule?</h2>
     <p>Log in to place your order and track your items online.</p>
     <button class="cta-btn" onclick="window.location.href='login.html'">Login / Create Order</button>
   </div>
-
   <div class="features">
     <div class="feature-card"><div class="icon">⚡</div><h3>Fast Turnaround</h3><p>Same-day and next-day options available</p></div>
     <div class="feature-card"><div class="icon">💎</div><h3>Expert Care</h3><p>Professional handling of all fabrics</p></div>

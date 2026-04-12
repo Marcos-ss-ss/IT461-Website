@@ -1,47 +1,32 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="login.css">
 <title>Create Account</title>
+<style>
+  .login-logo { width: 184px !important; max-width: 184px !important; }
+</style>
 </head>
-
 <body>
-
 <div class="wizard-container">
-
-<img src="WDS-Logo.png" class="login-logo">
-
-
-<h2>Create Account</h2>
-
-<form id="createAccountForm">
-
-<label>First Name</label>
-<input type="text" id="firstName" required>
-
-<label>Last Name</label>
-<input type="text" id="lastName" required>
-
-<label>Phone Number</label>
-<input type="text" id="phone" required>
-
-<label>Email (optional)</label>
-<input type="email" id="email">
-
-<label>Password</label>
-<input type="password" id="password" required>
-
-<button type="submit" class="next-btn">Create Account</button>
-
-</form>
-
-<p id="accountMessage"></p>
-
+  <img src="WDS-Logo.png" class="login-logo">
+  <h2>Create Account</h2>
+  <form id="createAccountForm">
+    <label>First Name</label>
+    <input type="text" id="firstName" required>
+    <label>Last Name</label>
+    <input type="text" id="lastName" required>
+    <label>Phone Number</label>
+    <input type="text" id="phone" required>
+    <label>Email (optional)</label>
+    <input type="email" id="email">
+    <label>Password</label>
+    <input type="password" id="password" required>
+    <button type="submit" class="next-btn">Create Account</button>
+  </form>
+  <p id="accountMessage"></p>
 </div>
-
 <script src="createAccount.js"></script>
-
 </body>
 </html>

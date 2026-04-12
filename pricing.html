@@ -1,79 +1,273 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="stylesheet.css">
-<title>Pricing</title>
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services & Pricing - WDS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0d1b2a; --blue: #1565c0; --blue-bright: #1e88e5;
+      --blue-light: #e3f2fd; --white: #ffffff; --gray: #f5f7fa; --text: #1a1a2e;
+    }
+    body { font-family: 'Nunito', sans-serif; background: var(--gray); color: var(--text); display: flex; min-height: 100vh; }
 
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 200px; min-height: 100vh; background: var(--navy);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0; position: fixed; top: 0; left: 0; z-index: 100;
+    }
+    .sidebar .logo-btn { width: 100%; display: block; background: var(--blue); padding: 18px 10px; text-align: center; text-decoration: none; border-bottom: 3px solid rgba(0,0,0,0.2); transition: background 0.2s; }
+    .sidebar .logo-btn img { max-width: 150px; height: auto; display: block; margin: 0 auto; }
+    .sidebar .logo-btn:hover { background: var(--blue-bright); }
+    .sidebar .nav-top { list-style: none; width: 100%; padding: 20px 0; flex: 1; }
+    .sidebar .nav-top li { width: 100%; margin-bottom: 14px; }
+    .sidebar .nav-top li a { display: block; text-align: center; padding: 12px 16px; margin: 0 16px; background: var(--blue); color: var(--white); text-decoration: none; font-weight: 700; font-size: 0.88rem; border-radius: 8px; transition: background 0.2s, transform 0.2s; line-height: 1.3; }
+    .sidebar .nav-top li a:hover { background: var(--blue-bright); transform: translateX(4px); }
+    .sidebar .nav-bottom { width: 100%; padding: 0 0 20px 0; flex-shrink: 0; border-top: 1px solid rgba(255,255,255,0.15); }
+    .sidebar .nav-bottom a { display: block; text-align: center; padding: 12px 16px; margin: 16px 16px 0; background: #1a2a3a; color: var(--white); text-decoration: none; font-weight: 700; font-size: 0.88rem; border-radius: 8px; border: 1px solid #2c4a6a; transition: background 0.2s, transform 0.2s; }
+    .sidebar .nav-bottom a:hover { background: #243545; transform: translateX(4px); }
+
+    /* ── MAIN ── */
+    .main-content { margin-left: 200px; flex: 1; padding: 36px 40px; }
+
+    .page-title { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--navy); letter-spacing: 2px; margin-bottom: 6px; }
+    .page-subtitle { color: #666; font-size: 0.95rem; margin-bottom: 28px; }
+
+    /* ── GRID ── */
+    .quad-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    /* ── TICKET PANEL ── */
+    .ticket-panel {
+      background: var(--white);
+      border: 2px solid #b0c4de;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+    .ticket-panel-header {
+      background: var(--blue); color: var(--white);
+      padding: 10px 16px;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+    .ticket-panel table { width: 100%; border-collapse: collapse; }
+    .ticket-panel table thead tr { background: #dce8f5; }
+    .ticket-panel table thead th { padding: 8px 12px; text-align: left; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--blue); }
+    .ticket-panel table thead th:last-child { text-align: right; }
+    .ticket-panel table tbody tr { border-bottom: 1px solid #eaf2ff; }
+    .ticket-panel table tbody tr:nth-child(even) { background: #f7fbff; }
+    .ticket-panel table tbody td { padding: 9px 12px; font-size: 0.9rem; color: var(--navy); font-weight: 600; }
+    .ticket-panel table tbody td:last-child { text-align: right; font-weight: 800; color: var(--blue); }
+    .ticket-panel .ticket-note { padding: 10px 14px; font-size: 0.78rem; color: #777; background: #f7fbff; border-top: 1px solid #dce8f5; font-style: italic; }
+
+    /* ── AD PANELS ── */
+    .ad-panel {
+      background: var(--white);
+      border: 2px solid #b0c4de;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .ad-panel-header {
+      background: var(--navy); color: var(--white);
+      padding: 12px 16px;
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+    .ad-panel-body { padding: 20px 24px; flex: 1; }
+    .ad-panel-body .price-highlight {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 1.5rem;
+      color: var(--blue);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .ad-panel-body .price-min {
+      font-size: 0.82rem;
+      color: #888;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .ad-panel-body ul { list-style: none; padding: 0; }
+    .ad-panel-body ul li {
+      padding: 6px 0;
+      font-size: 0.88rem;
+      color: var(--text);
+      border-bottom: 1px solid #eef4ff;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .ad-panel-body ul li::before { content: "✔"; color: var(--blue); font-weight: 800; flex-shrink: 0; }
+    .ad-panel-body ul li:last-child { border-bottom: none; }
+
+    .ad-panel-body .section-label {
+      font-weight: 800; font-size: 0.8rem; color: var(--navy);
+      text-transform: uppercase; letter-spacing: 1px;
+      margin: 16px 0 8px; border-top: 2px solid var(--blue-light); padding-top: 12px;
+    }
+    .ad-panel-body .contact-line {
+      margin-top: 16px; padding-top: 12px; border-top: 2px solid var(--blue-light);
+      font-size: 0.88rem; color: #555; line-height: 1.6;
+    }
+    .ad-panel-body .contact-line strong { color: var(--navy); }
+    .ad-panel-body .contact-line a { color: var(--blue); font-weight: 700; text-decoration: none; }
+    .ad-panel-body .contact-line a:hover { text-decoration: underline; }
+
+    .no-data { padding: 20px; color: #888; text-align: center; font-style: italic; }
+  </style>
+</head>
 <body>
 
-<!-- Sidebar -->
 <nav class="sidebar">
-    <div class="logo">WDS</div>
-
-    <ul class="nav-menu">
-        <li><a href="./index.html">Home</a></li>
-
-       <li><a href="./Contact.html">Contact Us</a></li>
-       
-        <li><a href="./Services.html">Services</a></li>
-
-        <li><a href="./pricing.html">Pricing</a></li>
-    </ul>
+  <a href="index.html" class="logo-btn"><img src="WDS-Logo.png" alt="WDS Home"></a>
+  <ul class="nav-top">
+    <li><a href="login.html">Login / Create Order</a></li>
+    <li><a href="pricing.html">Our Services</a></li>
+    <li><a href="Contact.html">Contact Us</a></li>
+  </ul>
+  <div class="nav-bottom">
+    <a href="employee.html">Employees</a>
+  </div>
 </nav>
 
-<!-- Main Content -->
-<div class="main-service">
+<div class="main-content">
+  <h1 class="page-title">Our Services & Pricing</h1>
+  <p class="page-subtitle">Professional garment care with transparent pricing — no hidden fees.</p>
 
-<h1>Dry Cleaning Pricing</h1>
+  <div class="quad-grid">
 
-<p class="subtitle">
-Our pricing is based on individual garments. Each item is cleaned separately to ensure the best quality.
-</p>
+    <!-- TOP LEFT: Dry Cleaning -->
+    <div class="ticket-panel">
+      <div class="ticket-panel-header">🧼 Dry Cleaning</div>
+      <table>
+        <thead>
+          <tr><th>Garment</th><th>Price per Item</th></tr>
+        </thead>
+        <tbody id="dcRows">
+          <tr><td colspan="2" class="no-data">Loading...</td></tr>
+        </tbody>
+      </table>
+      <div class="ticket-note">Prices may vary depending on material or special cleaning requirements.</div>
+    </div>
 
-<div class="services-container">
+    <!-- TOP RIGHT: Press Only -->
+    <div class="ticket-panel">
+      <div class="ticket-panel-header">👕 Steam Press Only</div>
+      <table>
+        <thead>
+          <tr><th>Garment</th><th>Price per Item</th></tr>
+        </thead>
+        <tbody id="poRows">
+          <tr><td colspan="2" class="no-data">Loading...</td></tr>
+        </tbody>
+      </table>
+      <div class="ticket-note">Steam pressing only — no cleaning solution used.</div>
+    </div>
 
-<div class="service-box">
-<h3>Pants</h3>
-<p>$4 per item</p>
+    <!-- BOTTOM LEFT: Bulk Wash & Fold -->
+    <div class="ad-panel">
+      <div class="ad-panel-header">🧺 Bulk Wash & Fold</div>
+      <div class="ad-panel-body">
+        <div class="price-highlight">$2.50 per pound</div>
+        <div class="price-min">$30 minimum order</div>
+        <ul>
+          <li>Wash, Dry, and Fold included</li>
+          <li>36-hour guaranteed turnaround</li>
+          <li>Your load is never mixed with others</li>
+          <li>Eco-Friendly Detergents</li>
+          <li>Order Status Tracking</li>
+          <li>100% Satisfaction Guarantee</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- BOTTOM RIGHT: Bridal Gown -->
+    <div class="ad-panel">
+      <div class="ad-panel-header">👰 Bridal Gown Cleaning & Preservation</div>
+      <div class="ad-panel-body">
+        <ul>
+          <li>Bridal Gown Cleaning rates start at <strong>$300</strong></li>
+          <li>Bridal Gown Cleaning & Preservation — <strong>$425</strong><br>
+            <span style="font-size:0.82rem; color:#666; margin-top:2px; display:block;">
+              Add a Veil: $30 in same box &nbsp;|&nbsp; $60 separately
+            </span>
+          </li>
+        </ul>
+
+        <div class="section-label">How long does it take?</div>
+        <ul>
+          <li>Cleaning Only — typically <strong>6–8 weeks</strong></li>
+          <li>Cleaning & Preservation — typically <strong>8–10 weeks</strong></li>
+          <li>We ship UPS ground with signature <span style="color:#888;">(additional UPS cost applies)</span></li>
+        </ul>
+
+        <div class="contact-line">
+          <strong>Ready to get started?</strong><br>
+          Call us at <strong>012.345.6789</strong>, or message us via our
+          <a href="Contact.html">Contact Us</a> page.
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
-<div class="service-box">
-<h3>Short Sleeve Shirt</h3>
-<p>$3 per item</p>
-</div>
+<script>
+  const API = "https://wds-drycleaning-group-8.onrender.com";
 
-<div class="service-box">
-<h3>Long Sleeve Shirt</h3>
-<p>$3 per item</p>
-</div>
+  fetch(`${API}/services`)
+    .then(res => res.json())
+    .then(services => {
+      const dcRows = document.getElementById("dcRows");
+      const poRows = document.getElementById("poRows");
+      dcRows.innerHTML = "";
+      poRows.innerHTML = "";
 
-<div class="service-box">
-<h3>Sweater</h3>
-<p>$5 per item</p>
-</div>
+      const dcServices = services.filter(s => s.service_name.startsWith("Dry Clean"));
+      const poServices = services.filter(s => s.service_name.startsWith("Press Only"));
 
-<div class="service-box">
-<h3>Jacket</h3>
-<p>$6 per item</p>
-</div>
+      function garmentName(fullName) {
+        return fullName.replace("Dry Clean - ", "").replace("Press Only - ", "");
+      }
 
-<div class="service-box">
-<h3>Dress</h3>
-<p>$8 per item</p>
-</div>
+      if (dcServices.length === 0) {
+        dcRows.innerHTML = '<tr><td colspan="2" class="no-data">No services found.</td></tr>';
+      } else {
+        dcServices.forEach(svc => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td>${garmentName(svc.service_name)}</td><td>$${parseFloat(svc.price).toFixed(2)}</td>`;
+          dcRows.appendChild(tr);
+        });
+      }
 
-</div>
-
-<p class="contact-note">
-Prices may vary depending on material or special cleaning requirements.
-</p>
-
-</div>
-
+      if (poServices.length === 0) {
+        poRows.innerHTML = '<tr><td colspan="2" class="no-data">No services found.</td></tr>';
+      } else {
+        poServices.forEach(svc => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td>${garmentName(svc.service_name)}</td><td>$${parseFloat(svc.price).toFixed(2)}</td>`;
+          poRows.appendChild(tr);
+        });
+      }
+    })
+    .catch(() => {
+      document.getElementById("dcRows").innerHTML = '<tr><td colspan="2" class="no-data">Could not load pricing. Please refresh.</td></tr>';
+      document.getElementById("poRows").innerHTML = '<tr><td colspan="2" class="no-data">Could not load pricing. Please refresh.</td></tr>';
+    });
+</script>
 </body>
-
 </html>
-

@@ -23,9 +23,9 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         localStorage.setItem("last_name", data.last_name);
 
         if (data.role === "worker") {
-          window.location.href = "worker.html";
+          window.location.href = "employee.html";
         } else {
-          window.location.href = "schedule.html";
+          window.location.href = "OrderPage.html";
         }
       } else {
         messageEl.textContent = "Invalid credentials. Please try again.";

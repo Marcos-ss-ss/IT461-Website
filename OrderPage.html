@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Order - WDS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0d1b2a; --blue: #1565c0; --blue-bright: #1e88e5;
+      --blue-light: #e3f2fd; --white: #ffffff; --gray: #f5f7fa; --text: #1a1a2e;
+    }
+    body { font-family: 'Nunito', sans-serif; background: var(--gray); color: var(--text); display: flex; min-height: 100vh; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 200px; min-height: 100vh; background: var(--navy);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0; position: fixed; top: 0; left: 0; z-index: 100;
+    }
+    .sidebar .logo-btn { width: 100%; display: block; background: var(--blue); padding: 18px 10px; text-align: center; text-decoration: none; border-bottom: 3px solid rgba(0,0,0,0.2); transition: background 0.2s; }
+    .sidebar .logo-btn img { max-width: 150px; height: auto; display: block; margin: 0 auto; }
+    .sidebar .logo-btn:hover { background: var(--blue-bright); }
+    .sidebar .nav-top { list-style: none; width: 100%; padding: 20px 0; flex: 1; }
+    .sidebar .nav-top li { width: 100%; margin-bottom: 14px; }
+    .sidebar .nav-top li a { display: block; text-align: center; padding: 12px 16px; margin: 0 16px; background: var(--blue); color: var(--white); text-decoration: none; font-weight: 700; font-size: 0.88rem; border-radius: 8px; transition: background 0.2s, transform 0.2s; line-height: 1.3; }
+    .sidebar .nav-top li a:hover { background: var(--blue-bright); transform: translateX(4px); }
+    .sidebar .nav-bottom { width: 100%; padding: 0 0 20px 0; flex-shrink: 0; border-top: 1px solid rgba(255,255,255,0.15); }
+    .sidebar .nav-bottom a { display: block; text-align: center; padding: 12px 16px; margin: 16px 16px 0; background: #1a2a3a; color: var(--white); text-decoration: none; font-weight: 700; font-size: 0.88rem; border-radius: 8px; border: 1px solid #2c4a6a; transition: background 0.2s, transform 0.2s; }
+    .sidebar .nav-bottom a:hover { background: #243545; transform: translateX(4px); }
+
+    /* ── MAIN ── */
+    .main-content { margin-left: 200px; flex: 1; padding: 40px; display: flex; justify-content: center; align-items: flex-start; }
+
+    /* ── TICKET ── */
+    .ticket { background: var(--white); border: 2px solid #b0c4de; border-radius: 4px; width: 100%; max-width: 720px; box-shadow: 0 8px 40px rgba(0,0,0,0.12); overflow: hidden; }
+    .ticket-header { background: var(--white); padding: 20px 30px 14px; text-align: center; border-bottom: 2px solid #b0c4de; }
+    .ticket-header img { max-width: 150px; height: auto; }
+
+    .ticket-meta { display: grid; grid-template-columns: 1fr 1fr; }
+    .ticket-meta-field { padding: 8px 16px; border-right: 1px solid #b0c4de; border-bottom: 1px solid #b0c4de; font-size: 0.85rem; }
+    .ticket-meta-field:nth-child(even) { border-right: none; }
+    .ticket-meta-field label { display: block; font-size: 0.7rem; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+    .ticket-meta-field input { width: 100%; border: none; outline: none; font-family: 'Nunito', sans-serif; font-size: 0.9rem; color: var(--text); background: transparent; }
+
+    .ticket-table { width: 100%; border-collapse: collapse; }
+    .ticket-table thead tr { background: var(--blue); color: var(--white); }
+    .ticket-table thead th { padding: 9px 10px; text-align: center; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+    .ticket-table thead th:first-child { text-align: left; padding-left: 16px; }
+    .ticket-table tbody tr { border-bottom: 1px solid #dce8f5; }
+    .ticket-table tbody tr:nth-child(even) { background: #f0f7ff; }
+    .ticket-table tbody td { padding: 7px 10px; font-size: 0.85rem; color: var(--navy); text-align: center; vertical-align: middle; }
+    .ticket-table tbody td:first-child { text-align: left; padding-left: 16px; font-weight: 700; font-size: 0.82rem; }
+    .ticket-table tbody td input[type="number"] { width: 58px; text-align: center; border: 1px solid #b0c4de; border-radius: 4px; padding: 4px 6px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--navy); background: var(--white); }
+    .ticket-table tbody td input[type="number"]:focus { outline: 2px solid var(--blue); border-color: var(--blue); }
+    .price-label { font-size: 0.8rem; color: #555; font-weight: 600; }
+    .line-total { font-weight: 800; color: var(--navy); }
+
+    .ticket-total { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; border-top: 3px solid var(--blue); background: var(--blue-light); }
+    .ticket-total .label { font-weight: 800; font-size: 0.9rem; color: #555; }
+    .ticket-total .total-amount { font-family: 'Bebas Neue', cursive; font-size: 1.6rem; color: var(--blue); letter-spacing: 2px; }
+
+    .ticket-notes { padding: 12px 24px; border-top: 1px solid #b0c4de; }
+    .ticket-notes label { font-size: 0.72rem; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+    .ticket-notes textarea { width: 100%; border: 1px solid #b0c4de; border-radius: 4px; padding: 8px; font-family: 'Nunito', sans-serif; font-size: 0.9rem; resize: vertical; min-height: 54px; color: var(--text); }
+    .ticket-notes textarea:focus { outline: 2px solid var(--blue); }
+
+    .ticket-footer { padding: 16px 24px; display: flex; justify-content: flex-end; border-top: 2px solid #b0c4de; background: var(--white); }
+    .create-order-btn { background: var(--blue); color: var(--white); border: none; padding: 14px 48px; font-size: 1rem; font-weight: 800; font-family: 'Nunito', sans-serif; border-radius: 8px; cursor: pointer; letter-spacing: 1px; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 16px rgba(21,101,192,0.3); }
+    .create-order-btn:hover { background: var(--blue-bright); transform: translateY(-2px); }
+    .create-order-btn:disabled { background: #aaa; cursor: not-allowed; transform: none; }
+
+    #msgBar { padding: 8px 24px; font-weight: 700; font-size: 0.9rem; color: #c0392b; display: none; }
+
+    .receipt-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; align-items: center; justify-content: center; }
+    .receipt-overlay.show { display: flex; }
+    .receipt-box { background: var(--white); border-radius: 14px; padding: 40px; max-width: 460px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+    .receipt-box .check { font-size: 3rem; margin-bottom: 10px; }
+    .receipt-box h2 { font-family: 'Bebas Neue', cursive; font-size: 2rem; color: var(--navy); letter-spacing: 2px; margin-bottom: 6px; }
+    .receipt-box .order-number-display { background: var(--blue-light); border: 2px solid var(--blue); border-radius: 8px; padding: 12px 24px; font-family: 'Bebas Neue', cursive; font-size: 1.8rem; color: var(--blue); letter-spacing: 3px; margin: 14px 0; }
+    .receipt-box p { color: #555; font-size: 0.95rem; margin-bottom: 6px; }
+    .receipt-box .total-display { font-size: 1.3rem; font-weight: 800; color: var(--navy); margin: 8px 0 20px; }
+    .receipt-box button { background: var(--blue); color: var(--white); border: none; padding: 12px 36px; font-size: 1rem; font-weight: 800; font-family: 'Nunito', sans-serif; border-radius: 8px; cursor: pointer; transition: background 0.2s; }
+    .receipt-box button:hover { background: var(--blue-bright); }
+  </style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <a href="index.html" class="logo-btn"><img src="WDS-Logo.png" alt="WDS Home"></a>
+  <ul class="nav-top">
+    <li><a href="login.html">Login / Create Order</a></li>
+    <li><a href="pricing.html">Our Services</a></li>
+    <li><a href="Contact.html">Contact Us</a></li>
+  </ul>
+  <div class="nav-bottom">
+    <a href="employee.html">Employees</a>
+  </div>
+</nav>
+
+<div class="main-content">
+  <div class="ticket">
+    <div class="ticket-header">
+      <img src="WDS-Logo.png" alt="WDS Logo">
+    </div>
+    <div class="ticket-meta">
+      <div class="ticket-meta-field">
+        <label>Customer Name</label>
+        <input type="text" id="customerName" readonly placeholder="Loading...">
+      </div>
+      <div class="ticket-meta-field">
+        <label>Date</label>
+        <input type="text" id="orderDate" readonly>
+      </div>
+      <div class="ticket-meta-field">
+        <label>Preferred Pickup Date</label>
+        <input type="date" id="pickupDate">
+      </div>
+      <div class="ticket-meta-field">
+        <label>Preferred Pickup Time</label>
+        <input type="time" id="pickupTime">
+      </div>
+    </div>
+
+    <table class="ticket-table">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Dry Clean Price</th>
+          <th>Dry Clean Qty</th>
+          <th>Press Only Price</th>
+          <th>Press Only Qty</th>
+          <th>Net Price</th>
+        </tr>
+      </thead>
+      <tbody id="serviceRows">
+        <tr><td colspan="6" style="text-align:center; padding:16px; color:#888;">Loading services...</td></tr>
+      </tbody>
+    </table>
+
+    <div class="ticket-total">
+      <div class="label">TOTAL →</div>
+      <div class="total-amount" id="totalDisplay">$0.00</div>
+    </div>
+
+    <div class="ticket-notes">
+      <label>Special Instructions (Optional)</label>
+      <textarea id="specialNotes" placeholder="Any special care instructions..."></textarea>
+    </div>
+
+    <div id="msgBar"></div>
+
+    <div class="ticket-footer">
+      <button class="create-order-btn" id="createOrderBtn">Create Order</button>
+    </div>
+  </div>
+</div>
+
+<div class="receipt-overlay" id="receiptOverlay">
+  <div class="receipt-box">
+    <div class="check">✅</div>
+    <h2>Order Confirmed!</h2>
+    <div class="order-number-display" id="receiptOrderNum"></div>
+    <p>Please show this order number when dropping off your items.</p>
+    <div class="total-display" id="receiptTotal"></div>
+    <button onclick="window.location.href='index.html'">Return to Home</button>
+  </div>
+</div>
+
+<script>
+  const API = "https://wds-drycleaning-group-8.onrender.com";
+  const token = localStorage.getItem("token");
+  const firstName = localStorage.getItem("first_name") || "";
+  const lastName = localStorage.getItem("last_name") || "";
+
+  if (!token) { window.location.href = "login.html"; }
+
+  document.getElementById("customerName").value = (firstName + " " + lastName).trim();
+  document.getElementById("orderDate").value = new Date().toLocaleDateString();
+
+  const clothingTypes = [
+    { label: "PC. Suits",       dcKey: "Dry Clean - Suit (2pc)", poKey: null },
+    { label: "Coats",           dcKey: "Dry Clean - Coat",       poKey: null },
+    { label: "Dresses",         dcKey: "Dry Clean - Dress",      poKey: null },
+    { label: "Slacks / Pants",  dcKey: "Dry Clean - Pants",      poKey: "Press Only - Pants" },
+    { label: "Shirts",          dcKey: "Dry Clean - Shirt",      poKey: "Press Only - Shirt" },
+  ];
+
+  let serviceMap = {};
+
+  fetch(`${API}/services`)
+    .then(res => res.json())
+    .then(services => {
+      services.forEach(s => { serviceMap[s.service_name] = { id: s.id, price: parseFloat(s.price) }; });
+      buildTable();
+    })
+    .catch(() => {
+      document.getElementById("serviceRows").innerHTML =
+        '<tr><td colspan="6" style="text-align:center;color:#c0392b;padding:16px;">Could not load services. Please refresh.</td></tr>';
+    });
+
+  function buildTable() {
+    const tbody = document.getElementById("serviceRows");
+    tbody.innerHTML = "";
+    clothingTypes.forEach((item, idx) => {
+      const dcSvc = item.dcKey ? serviceMap[item.dcKey] : null;
+      const poSvc = item.poKey ? serviceMap[item.poKey] : null;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${item.label}</td>
+        <td class="price-label">${dcSvc ? "$" + dcSvc.price.toFixed(2) : "—"}</td>
+        <td>${dcSvc ? `<input type="number" min="0" value="0" class="qty-input" data-id="${dcSvc.id}" data-price="${dcSvc.price}" data-row="${idx}" onchange="updateTotal()">` : "—"}</td>
+        <td class="price-label">${poSvc ? "$" + poSvc.price.toFixed(2) : "—"}</td>
+        <td>${poSvc ? `<input type="number" min="0" value="0" class="qty-input" data-id="${poSvc.id}" data-price="${poSvc.price}" data-row="${idx}" onchange="updateTotal()">` : "—"}</td>
+        <td class="line-total" id="line-${idx}">—</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function updateTotal() {
+    const rowTotals = {};
+    document.querySelectorAll(".qty-input").forEach(input => {
+      const qty = parseInt(input.value) || 0;
+      const row = input.dataset.row;
+      rowTotals[row] = (rowTotals[row] || 0) + qty * parseFloat(input.dataset.price);
+    });
+    let grand = 0;
+    Object.entries(rowTotals).forEach(([row, total]) => {
+      grand += total;
+      const cell = document.getElementById(`line-${row}`);
+      if (cell) cell.textContent = total > 0 ? "$" + total.toFixed(2) : "—";
+    });
+    document.getElementById("totalDisplay").textContent = "$" + grand.toFixed(2);
+  }
+
+  document.getElementById("createOrderBtn").addEventListener("click", function () {
+    const items = [];
+    document.querySelectorAll(".qty-input").forEach(input => {
+      const qty = parseInt(input.value) || 0;
+      if (qty > 0) items.push({ service_id: parseInt(input.dataset.id), quantity: qty });
+    });
+
+    if (items.length === 0) {
+      const bar = document.getElementById("msgBar");
+      bar.style.display = "block";
+      bar.textContent = "Please enter a quantity for at least one item.";
+      return;
+    }
+
+    const pickup_date = document.getElementById("pickupDate").value || null;
+    const pickup_time = document.getElementById("pickupTime").value || null;
+    const special_notes = document.getElementById("specialNotes").value || null;
+
+    this.disabled = true; this.textContent = "Submitting...";
+
+    fetch(`${API}/orders`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
+      body: JSON.stringify({ pickup_date, pickup_time, special_notes, items })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.order_number) {
+          document.getElementById("receiptOrderNum").textContent = data.order_number;
+          document.getElementById("receiptTotal").textContent = "Total: $" + parseFloat(data.total_cost).toFixed(2);
+          document.getElementById("receiptOverlay").classList.add("show");
+        } else {
+          const bar = document.getElementById("msgBar");
+          bar.style.display = "block";
+          bar.textContent = data.error || "Order failed. Please try again.";
+          this.disabled = false; this.textContent = "Create Order";
+        }
+      })
+      .catch(() => {
+        const bar = document.getElementById("msgBar");
+        bar.style.display = "block";
+        bar.textContent = "Server error. Please try again.";
+        this.disabled = false; this.textContent = "Create Order";
+      });
+  });
+</script>
+</body>
+</html>
