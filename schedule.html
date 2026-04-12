@@ -1,130 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<link rel="stylesheet" href="stylesheet.css">
-<title>Schedule Service</title>
-
+  <link rel="stylesheet" href="stylesheet.css">
+  <title>Schedule Service</title>
 </head>
-
 <body>
-
 <div class="wizard-container">
+  <h1>Schedule Laundry Service</h1>
+  <form id="laundryForm">
 
-<h1>Schedule Laundry Service</h1>
+    <!-- STEP 1: Add Items -->
+    <div class="step active">
+      <h3>Select Your Items</h3>
 
-<form id="laundryForm">
+      <label>Service Type</label>
+      <select id="clothingType">
+        <option value="">Select type</option>
+      </select>
 
-<!-- STEP 1 -->
-<div class="step active">
+      <br><br>
+      <label>Quantity</label>
+      <input type="number" id="quantity" min="1" placeholder="Enter quantity">
 
-<label>First Name</label>
-<input type="text" id="firstName" required>
+      <p id="pricePreview"></p>
+      <br>
+      <button type="button" id="addItem">Add Item</button>
 
-<br><br>
+      <h3>Items Added:</h3>
+      <ul id="itemList"></ul>
 
-<label>Last Name</label>
-<input type="text" id="lastName" required>
-<button type="button" class="next-btn">Next</button>
+      <button type="button" class="next-btn">Next</button>
+    </div>
 
-</div>
+    <!-- STEP 2: Pickup Details -->
+    <div class="step">
+      <label>Preferred Pickup Date</label>
+      <input type="date" id="pickupDate">
 
+      <br><br>
+      <label>Preferred Pickup Time</label>
+      <input type="time" id="pickupTime">
 
-<!-- STEP 2 -->
-<div class="step">
+      <button type="button" class="next-btn">Next</button>
+    </div>
 
-<label>What is your phone number?</label>
-<input type="tel" id="phone" placeholder="10-digit phone number" required>
+    <!-- STEP 3: Special Instructions -->
+    <div class="step">
+      <label>Any special instructions?</label>
+      <textarea id="instructions" placeholder="Optional"></textarea>
 
-<button type="button" class="next-btn">Next</button>
+      <button type="submit" class="submit-btn">Submit Order</button>
+    </div>
 
-</div>
+  </form>
 
-
-<!-- STEP 3 -->
-<div class="step">
-
-<label>What service do you need?</label>
-
-<select id="laundryType" required>
-<option value="">Select Service</option>
-<option>Wash & Fold</option>
-<option>Dry Cleaning</option>
-<option>Large Items</option>
-<option>Mixed Laundry</option>
-</select>
-
-<button type="button" class="next-btn">Next</button>
-
-</div>
-
-
-<!-- STEP 4 -->
-<div class="step">
-
-<label>Clothing Type</label>
-
-<select id="clothingType">
-<option value="">Select Clothing Type</option>
-<option value="Pants">Pants</option>
-<option value="Long Sleeve Shirt">Long Sleeve Shirt</option>
-<option value="Short Sleeve Shirt">Short Sleeve Shirt</option>
-<option value="Dress">Dress</option>
-<option value="Jacket">Jacket</option>
-<option value="Sweater">Sweater</option>
-</select>
-
-<br><br>
-
-<label>Who is the clothing for?</label>
-
-<select id="clothingOwner">
-<option value="">Select</option>
-<option value="Men">Men</option>
-<option value="Women">Women</option>
-<option value="Kids">Kids</option>
-</select>
-
-<br><br>
-
-<label>Quantity</label>
-<input type="number" id="quantity" min="1" placeholder="Enter quantity">
-
-<p id="pricePreview"></p>
-
-<br>
-
-<br><br>
-
-<button type="button" id="addItem">Add Item</button>
-
-<h3>Items Added:</h3>
-
-<ul id="itemList"></ul>
-
-<button type="button" class="next-btn">Next</button>
-
-</div>
-
-
-<!-- STEP 5 -->
-<div class="step">
-
-<label>Any special instructions?</label>
-
-<textarea id="instructions" placeholder="Optional"></textarea>
-
-<button type="submit" class="submit-btn">Submit Order</button>
-
-</div>
-
-</form>
-
-
-<div id="receipt" class="receipt" style="display:none;"></div>
+  <div id="receipt" class="receipt" style="display:none;"></div>
 </div>
 
 <script src="schedule.js"></script>
-
 </body>
 </html>

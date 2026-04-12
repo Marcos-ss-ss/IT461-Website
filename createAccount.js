@@ -1,45 +1,34 @@
-document.getElementById("createAccountForm").addEventListener("submit", function(e){
+const API = "https://wds-drycleaning-group-8.onrender.com";
 
-e.preventDefault();
+document.getElementById("createAccountForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-const firstName = document.getElementById("firstName").value;
-const lastName = document.getElementById("lastName").value;
-const phone = document.getElementById("phone").value;
-const email = document.getElementById("email").value;
-const password = document.getElementById("password").value;
+  const first_name = document.getElementById("firstName").value;
+  const last_name = document.getElementById("lastName").value;
+  const phone = document.getElementById("phone").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const messageEl = document.getElementById("accountMessage");
 
-fetch("https://lidia-nonsymbolic-brett.ngrok-free.app/register",{
+  messageEl.textContent = "Creating account...";
 
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body: JSON.stringify({
-firstName,
-lastName,
-phone,
-email,
-password
-})
-
-})
-
-.then(res => res.json())
-
-.then(data => {
-
-document.getElementById("accountMessage").innerText = data.message;
-
-if(data.success){
-
-setTimeout(()=>{
-window.location.href = "login.html";
-},2000);
-
-}
-
-});
-
+  fetch(`${API}/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ first_name, last_name, phone, email, password })
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (data.userId) {
+        messageEl.textContent = "Account created! Redirecting to login...";
+        setTimeout(() => {
+          window.location.href = "login.html";
+        }, 2000);
+      } else {
+        messageEl.textContent = data.error || "Account creation failed.";
+      }
+    })
+    .catch(() => {
+      messageEl.textContent = "Server error. Please try again.";
+    });
 });
