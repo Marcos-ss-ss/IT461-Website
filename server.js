@@ -340,17 +340,7 @@ app.patch('/orders/:id/status', verifyToken, workerOnly, async (req, res) => {
   }
 
   try {
-    await db.query(
-      `UPDATE orders
-       SET status = $1,
-           payment_status = CASE
-             WHEN $1 = 'Picked Up' THEN 'Paid'
-             ELSE payment_status
-           END
-       WHERE id = $2`,
-      [status, req.params.id]
-    );
-
+    await db.query('UPDATE orders SET status = ? WHERE id = ?', [status, req.params.id]);
     res.json({ message: 'Status updated' });
   } catch (err) {
     console.error(err);
