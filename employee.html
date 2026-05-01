@@ -330,11 +330,29 @@ function buildOrderCard(order) {
 }
 
 function updateStatus(orderId, status) {
+  const updateData = { status };
+
+  // When an order is picked up, mark the payment as paid
+  if (status === "Picked Up") {
+    updateData.payment_status = "Paid";
+  }
+
   fetch(`${API}/orders/${orderId}/status`, {
     method: "PATCH",
-    headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
-    body: JSON.stringify({ status })
-  }).then(() => loadOrders());
+    headers: { 
+      "Content-Type": "application/json", 
+      "Authorization": "Bearer " + token 
+    },
+    body: JSON.stringify(updateData)
+  })
+  .then(res => res.json())
+  .then(data => {
+    loadOrders();
+  })
+  .catch(err => {
+    console.error("Error updating order:", err);
+    alert("There was an error updating the order.");
+  });
 }
 
 let workerServices = [];
