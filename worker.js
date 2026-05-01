@@ -83,13 +83,19 @@ function loadOrders() {
 
 /* UPDATE ORDER STATUS */
 function updateStatus(orderId, status) {
+  const updateData = { status };
+
+  if (status === "Picked Up") {
+    updateData.payment_status = "Paid";
+  }
+
   fetch(`${API}/orders/${orderId}/status`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
       "Authorization": "Bearer " + token
     },
-    body: JSON.stringify({ status })
+    body: JSON.stringify(updateData)
   })
     .then(res => res.json())
     .then(data => {
