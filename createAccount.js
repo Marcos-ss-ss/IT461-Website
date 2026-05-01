@@ -10,7 +10,15 @@ document.getElementById("createAccountForm").addEventListener("submit", function
   const password = document.getElementById("password").value;
   const messageEl = document.getElementById("accountMessage");
 
+  // ✅ NEW: block empty email
+  if (!email || email.trim() === "") {
+    messageEl.textContent = "Email is required.";
+    messageEl.style.color = "#c0392b";
+    return;
+  }
+
   messageEl.textContent = "Creating account...";
+  messageEl.style.color = "#000";
 
   fetch(`${API}/register`, {
     method: "POST",
@@ -21,14 +29,18 @@ document.getElementById("createAccountForm").addEventListener("submit", function
     .then(data => {
       if (data.userId) {
         messageEl.textContent = "Account created! Redirecting to login...";
+        messageEl.style.color = "#2e7d32";
+
         setTimeout(() => {
           window.location.href = "login.html";
         }, 2000);
       } else {
         messageEl.textContent = data.error || "Account creation failed.";
+        messageEl.style.color = "#c0392b";
       }
     })
     .catch(() => {
       messageEl.textContent = "Server error. Please try again.";
+      messageEl.style.color = "#c0392b";
     });
 });
