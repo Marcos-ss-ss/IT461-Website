@@ -21,6 +21,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         localStorage.setItem("role", data.role);
         localStorage.setItem("first_name", data.first_name);
         localStorage.setItem("last_name", data.last_name);
+        localStorage.setItem("email", data.email || identifier); // <-- THIS FIX
 
         if (data.role === "worker") {
           window.location.href = "employee.html";
