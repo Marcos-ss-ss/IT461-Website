@@ -21,6 +21,27 @@
     .sidebar .logo-btn { width: 100%; display: block; background: var(--blue); padding: 18px 10px; text-align: center; text-decoration: none; border-bottom: 3px solid rgba(0,0,0,0.2); transition: background 0.2s; }
     .sidebar .logo-btn img { max-width: 150px; height: auto; display: block; margin: 0 auto; }
     .sidebar .logo-btn:hover { background: var(--blue-bright); }
+
+    .welcome-user {
+      width: calc(100% - 32px);
+      margin: 16px 16px 0;
+      padding: 12px 10px;
+      background: #1a2a3a;
+      color: white;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      border: 1px solid #2c4a6a;
+      line-height: 1.3;
+    }
+
+    .welcome-user span {
+      display: block;
+      color: #90caf9;
+      margin-top: 4px;
+    }
+
     .sidebar .nav-top { list-style: none; width: 100%; padding: 20px 0; flex: 1; }
     .sidebar .nav-top li { width: 100%; margin-bottom: 14px; }
     .sidebar .nav-top li a { display: block; text-align: center; padding: 12px 16px; margin: 0 16px; background: var(--blue); color: var(--white); text-decoration: none; font-weight: 700; font-size: 0.88rem; border-radius: 8px; transition: background 0.2s, transform 0.2s; line-height: 1.3; }
@@ -82,6 +103,9 @@
 
 <nav class="sidebar">
   <a href="index.html" class="logo-btn"><img src="WDS-Logo.png" alt="WDS Home"></a>
+
+  <div class="welcome-user" id="welcomeUser" style="display:none;"></div>
+
   <ul class="nav-top">
     <li><a href="login.html">Login / Create Order</a></li>
     <li><a href="pricing.html">Our Services</a></li>
@@ -164,8 +188,17 @@ const hasEduDiscount = userEmail.endsWith(".edu");
 
 if (!token) window.location.href = "login.html";
 
-document.getElementById("customerName").value = (firstName + " " + lastName).trim();
+const fullName = (firstName + " " + lastName).trim();
+
+document.getElementById("customerName").value = fullName;
 document.getElementById("orderDate").value = new Date().toLocaleDateString();
+
+const welcomeEl = document.getElementById("welcomeUser");
+
+if (fullName) {
+  welcomeEl.innerHTML = `Welcome <span>${fullName}</span>`;
+  welcomeEl.style.display = "block";
+}
 
 const clothingTypes = [
   { label: "PC. Suits", dcKey: "Dry Clean - Suit (2pc)", poKey: null },
