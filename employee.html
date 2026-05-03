@@ -179,46 +179,46 @@
   </div>
 
   <div class="section-view" id="ordersView">
-  <div class="section-header" style="justify-content:space-between; flex-wrap:wrap;">
-    
-    <div style="display:flex; align-items:center; gap:16px;">
-      <button class="back-btn" onclick="showSection('home')">← Back</button>
-      <h2>📋 All Orders</h2>
+    <div class="section-header" style="justify-content:space-between; flex-wrap:wrap;">
+      
+      <div style="display:flex; align-items:center; gap:16px;">
+        <button class="back-btn" onclick="showSection('home')">← Back</button>
+        <h2>📋 All Orders</h2>
+      </div>
+
+      <div style="display:flex; gap:10px; align-items:center;">
+        <input 
+          type="text" 
+          id="orderSearch"
+          placeholder="Search customer / order # / phone"
+          onkeyup="loadOrders()"
+          style="
+            padding:8px 12px;
+            border:none;
+            border-radius:6px;
+            width:240px;
+            font-family:'Nunito',sans-serif;
+          "
+        >
+
+        <select 
+          id="orderStatusFilter"
+          onchange="loadOrders()"
+          style="
+            padding:8px 12px;
+            border:none;
+            border-radius:6px;
+            font-family:'Nunito',sans-serif;
+            font-weight:700;
+          "
+        >
+          <option value="all">All Orders</option>
+          <option value="active">Active Orders</option>
+          <option value="finished">Completed / Cancelled</option>
+        </select>
+      </div>
+
     </div>
-
-    <div style="display:flex; gap:10px; align-items:center;">
-      <input 
-        type="text" 
-        id="orderSearch"
-        placeholder="Search customer / order # / phone"
-        onkeyup="loadOrders()"
-        style="
-          padding:8px 12px;
-          border:none;
-          border-radius:6px;
-          width:240px;
-          font-family:'Nunito',sans-serif;
-        "
-      >
-
-      <select 
-        id="orderStatusFilter"
-        onchange="loadOrders()"
-        style="
-          padding:8px 12px;
-          border:none;
-          border-radius:6px;
-          font-family:'Nunito',sans-serif;
-          font-weight:700;
-        "
-      >
-        <option value="all">All Orders</option>
-        <option value="active">Active Orders</option>
-        <option value="finished">Completed / Cancelled</option>
-      </select>
-    </div>
-
-  </div>
     <div id="ordersPanel">
       <div class="orders-section-title">Active Orders</div>
       <div id="activeOrders"><p>Loading...</p></div>
@@ -327,7 +327,6 @@ function loadOrders() {
     const searchText = document.getElementById("orderSearch").value.toLowerCase();
     const filter = document.getElementById("orderStatusFilter").value;
 
-    // SEARCH BAR FILTER
     const filteredOrders = orders.filter(o => {
       return (
         (o.customer_name || "").toLowerCase().includes(searchText) ||
@@ -392,53 +391,51 @@ function buildOrderCard(order) {
   div.innerHTML = `
     <h3>${order.customer_name} — #${order.order_number}</h3>
     <p><strong>Phone:</strong> ${order.customer_phone}</p>
-    <p><strong>Status:</strong> ${order.status} | <strong>Payment:</strong> ${order.payment_status}</p>
+    <p><strong>Status:</strong> ${order.status}</p>
     <p><strong>Total:</strong> $${parseFloat(order.total_cost).toFixed(2)} | <strong>Pickup:</strong> ${order.pickup_date || "Not set"}</p>
     <p><strong>Created:</strong> ${new Date(order.created_at).toLocaleString()}</p>
   `;
+
   if (!["Picked Up", "Cancelled"].includes(order.status)) {
-  const btnRow = document.createElement("div");
-  btnRow.className = "btn-row";
+    const btnRow = document.createElement("div");
+    btnRow.className = "btn-row";
 
-  let actions = [];
+    let actions = [];
 
-  // STEP 1: Active / Pending (not confirmed yet)
-  if (order.status === "Pending") {
-    actions = [
-      { label: "Confirm", cls: "btn-confirm", val: "Confirmed" },
-      { label: "Cancel", cls: "btn-cancel", val: "Cancelled" }
-    ];
+    if (order.status === "Pending") {
+      actions = [
+        { label: "Confirm", cls: "btn-confirm", val: "Confirmed" },
+        { label: "Cancel", cls: "btn-cancel", val: "Cancelled" }
+      ];
+    }
+
+    else if (order.status === "Confirmed") {
+      actions = [
+        { label: "Mark Ready", cls: "btn-ready", val: "Ready" },
+        { label: "Picked Up", cls: "btn-pickup", val: "Picked Up" },
+        { label: "Cancel", cls: "btn-cancel", val: "Cancelled" }
+      ];
+    }
+
+    else if (order.status === "Ready") {
+      actions = [
+        { label: "Picked Up", cls: "btn-pickup", val: "Picked Up" },
+        { label: "Cancel", cls: "btn-cancel", val: "Cancelled" }
+      ];
+    }
+
+    actions.forEach(s => {
+      const btn = document.createElement("button");
+      btn.className = s.cls;
+      btn.textContent = s.label;
+      btn.onclick = () => updateStatus(order.order_id, s.val);
+      btnRow.appendChild(btn);
+    });
+
+    div.appendChild(btnRow);
   }
 
-  // STEP 2: Confirmed (now in pending queue)
-  else if (order.status === "Confirmed") {
-    actions = [
-      { label: "Mark Ready", cls: "btn-ready", val: "Ready" },
-      { label: "Picked Up", cls: "btn-pickup", val: "Picked Up" },
-      { label: "Cancel", cls: "btn-cancel", val: "Cancelled" }
-    ];
-  }
-
-  // STEP 3: Ready stage
-  else if (order.status === "Ready") {
-    actions = [
-      { label: "Picked Up", cls: "btn-pickup", val: "Picked Up" },
-      { label: "Cancel", cls: "btn-cancel", val: "Cancelled" }
-    ];
-  }
-
-  actions.forEach(s => {
-    const btn = document.createElement("button");
-    btn.className = s.cls;
-    btn.textContent = s.label;
-    btn.onclick = () => updateStatus(order.order_id, s.val);
-    btnRow.appendChild(btn);
-  });
-
- div.appendChild(btnRow);
-}
-
-return div;
+  return div;
 }
 
 function updateStatus(orderId, status) {
@@ -450,6 +447,7 @@ function updateStatus(orderId, status) {
 }
 
 let workerServices = [];
+
 function loadWorkerServices() {
   fetch(`${API}/services`)
     .then(res => res.json())
@@ -533,6 +531,7 @@ function submitWorkerOrder() {
   });
 
   const msg = document.getElementById("workerOrderMsg");
+
   if (items.length === 0) {
     msg.style.color = "#c0392b";
     msg.textContent = "Please add at least one item.";
@@ -564,3 +563,4 @@ document.getElementById("empPassword").addEventListener("keydown", e => {
 </script>
 </body>
 </html>
+
