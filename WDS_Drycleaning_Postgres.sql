@@ -1,5 +1,5 @@
 -- ============================================================
--- WDS Drycleaning Schema (IT461) - v2
+-- WDS Drycleaning Schema (IT461) -
 -- ============================================================
 
 DO $$ BEGIN
@@ -115,17 +115,18 @@ CREATE TABLE IF NOT EXISTS order_number_seq (
 
 -- ------------------------------------------------------------
 -- Seed data: services
--- FIX: removed trailing comma after last row (was causing syntax error)
--- FIX: restored DECIMAL(10,2) on price (was DECIMAL(4,2), max $99.99)
 -- ------------------------------------------------------------
 INSERT INTO services (id, service_name, price, description) VALUES
   (1, 'Dry Clean - Shirt',      5.99,  'Standard Dry Clean for Dress Shirts'),
   (2, 'Dry Clean - Pants',      6.99,  'Standard Dry Clean for Trousers'),
-  (3, 'Dry Clean - Suit (2pc)', 18.99, 'Standard Dry Clean for Jacket and Trousers'),
+  (3, 'Dry Clean - Suit(2pc)',  18.99, 'Standard Dry Clean for Jacket and Trousers'),
   (4, 'Dry Clean - Dress',      12.99, 'Standard Dry Clean for Dress or Skirt'),
   (5, 'Dry Clean - Coat',       19.99, 'Standard Dry Clean for Overcoat'),
   (6, 'Press Only - Shirt',     3.50,  'Steam Press Only, No Dry Cleaning'),
-  (7, 'Press Only - Pants',     3.50,  'Steam Press Only, No Dry Cleaning')
+  (7, 'Press Only - Pants',     3.50,  'Steam Press Only, No Dry Cleaning'),
+  (8, 'Press Only - Suit(2pc)', 18.99, 'Steam Press Only, No Dry Cleaning'),
+  (9, 'Press Only - Dress',     12.99, 'Steam Press Only, No Dry Cleaning'),
+  (10, 'Press Only - Coat',     19.99, 'Steam Press Only, No Dry Cleaning'),
 ON CONFLICT (id) DO NOTHING;
 
 SELECT setval('services_id_seq', 7);
@@ -135,7 +136,7 @@ SELECT setval('services_id_seq', 7);
 -- NOTE: Replace password_hash with a real bcrypt hash before deploying
 -- ------------------------------------------------------------
 INSERT INTO users (first_name, last_name, email, password_hash, role) VALUES
-  ('Worker', 'Admin', 'washingwds@gmail.com', '$2b$10$REPLACE_WITH_REAL_BCRYPT_HASH', 'worker')
+  ('Worker', 'Admin', 'washingwds@gmail.com', '$2b$10$TgT81MRrB61U0SjIWtQVduVZQj0oE9zC1sljgqN0wSRKC.WcKcvWu', 'worker')
 ON CONFLICT (email) DO NOTHING;
 
 -- ------------------------------------------------------------
