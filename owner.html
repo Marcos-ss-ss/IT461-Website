@@ -514,15 +514,11 @@ function renderTabs() {
 function buildOrderCard(order) {
   const div = document.createElement("div");
   div.className = "order-card";
-  const paymentDisplay = order.payment_status === "Paid"
-    ? `<span style="color:#2e7d32;font-weight:800;">✅ Paid</span>`
-    : `<span style="color:#c0392b;">Unpaid</span>`;
   div.innerHTML = `
     <h3>${order.customer_name} — #${order.order_number}</h3>
     <p><strong>Phone:</strong> ${order.customer_phone || "N/A"}</p>
     <p><strong>Status:</strong> ${order.status}</p>
     <p><strong>Total:</strong> $${parseFloat(order.total_cost).toFixed(2)} &nbsp;|&nbsp;
-       <strong>Payment:</strong> ${paymentDisplay}</p>
     <p><strong>Pickup:</strong> ${order.pickup_date || "Not set"}</p>
     <p><strong>Created:</strong> ${new Date(order.created_at).toLocaleString()}</p>`;
 
