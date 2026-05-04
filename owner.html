@@ -78,7 +78,7 @@
     .order-card .btn-row button { padding: 8px 18px; border: none; border-radius: 6px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: opacity 0.2s; }
     .order-card .btn-row button:hover { opacity: 0.85; }
     .btn-confirm { background: #1565c0; color: #fff; }
-    .btn-ready   { background: #e65100; color: #fff; }
+    .btn-readyforpickup   { background: #e65100; color: #fff; }
     .btn-pickup  { background: #2e7d32; color: #fff; }
     .btn-cancel  { background: #c0392b; color: #fff; }
 
@@ -251,12 +251,12 @@
       <div class="tab-bar">
         <button class="tab-btn active" onclick="switchTab(event,'initiated')">🆕 Initiated Orders</button>
         <button class="tab-btn" onclick="switchTab(event,'inprogress')">⚙️ In-Progress Orders</button>
-        <button class="tab-btn" onclick="switchTab(event,'ready')">🟠 Ready for Pick-Up</button>
+        <button class="tab-btn" onclick="switchTab(event,'readyforpickup')">🟠 Ready for Pick-Up for Pick-Up</button>
         <button class="tab-btn" onclick="switchTab(event,'pickedup')">✅ Picked-Up / Completed</button>
       </div>
       <div class="tab-content active" id="tab-initiated"><p style="color:#888;">Loading...</p></div>
       <div class="tab-content" id="tab-inprogress"><p style="color:#888;">Loading...</p></div>
-      <div class="tab-content" id="tab-ready"><p style="color:#888;">Loading...</p></div>
+      <div class="tab-content" id="tab-readyforpickup"><p style="color:#888;">Loading...</p></div>
       <div class="tab-content" id="tab-pickedup"><p style="color:#888;">Loading...</p></div>
     </div>
   </div>
@@ -496,8 +496,8 @@ function renderTabs() {
   );
   const groups = {
     initiated:  filtered.filter(o => o.status === "Pending"),
-    inprogress: filtered.filter(o => o.status === "Confirmed"),
-    ready:      filtered.filter(o => o.status === "Ready"),
+    inprogress: filtered.filter(o => o.status === "In Progress"),
+    readyforpickup:      filtered.filter(o => o.status === "Ready for Pick-Up"),
     pickedup:   filtered.filter(o => o.status === "Picked Up"),
   };
   for (const [key, list] of Object.entries(groups)) {
@@ -528,12 +528,12 @@ function buildOrderCard(order) {
   btnRow.className = "btn-row";
 
   if (order.status === "Pending") {
-    addBtn(btnRow, "Confirm Order",    "btn-confirm", () => updateStatus(order.order_id, "Confirmed"));
+    addBtn(btnRow, "Confirm Order",    "btn-confirm", () => updateStatus(order.order_id, "In Progress"));
     addBtn(btnRow, "Cancel Order",     "btn-cancel",  () => openCancelModal(order.order_id));
-  } else if (order.status === "Confirmed") {
-    addBtn(btnRow, "Ready for Pick-Up","btn-ready",   () => updateStatus(order.order_id, "Ready"));
+  } else if (order.status === "In Progress") {
+    addBtn(btnRow, "Ready for Pick-Up","btn-Ready for Pick-Up",   () => updateStatus(order.order_id, "Ready for Pick-Up"));
     addBtn(btnRow, "Cancel Order",     "btn-cancel",  () => openCancelModal(order.order_id));
-  } else if (order.status === "Ready") {
+  } else if (order.status === "Ready for Pick-Up") {
     addBtn(btnRow, "Picked-Up",        "btn-pickup",  () => updateStatus(order.order_id, "Picked Up"));
 }
 
