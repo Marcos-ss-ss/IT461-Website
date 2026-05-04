@@ -396,7 +396,6 @@ function buildOrderCard(order) {
     <p><strong>Phone:</strong> ${order.customer_phone || "N/A"}</p>
     <p><strong>Status:</strong> ${order.status}</p>
     <p><strong>Total:</strong> $${parseFloat(order.total_cost).toFixed(2)} &nbsp;|&nbsp;
-       <strong>Payment:</strong> ${paymentDisplay}</p>
     <p><strong>Pickup:</strong> ${order.pickup_date || "Not set"}</p>
     <p><strong>Created:</strong> ${new Date(order.created_at).toLocaleString()}</p>
   `;
