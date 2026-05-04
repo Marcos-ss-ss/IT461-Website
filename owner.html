@@ -274,9 +274,9 @@
       <!-- VENDOR INVENTORY TABLE -->
       <div class="vendor-orders-title">📦 Current Inventory</div>
       <div id="inventoryList"><p style="color:#888;">Loading inventory...</p></div>
-      
+
       <!-- CREATE VENDOR ORDER FORM -->
-      <div class="vendor-form-card">
+      <div class="vendor-form-card" style="margin-top:30px;">
         <h3>📋 Create New Vendor Order</h3>
         <span class="field-label">Select Vendor</span>
         <select id="vendorSelect" class="field-input" onchange="loadVendorItems()">
@@ -425,7 +425,6 @@ function ownerLogin() {
       document.getElementById("welcomeMsg").textContent = "Welcome back, " + data.first_name + "!";
       initOwnerDash();
     } else if (data.token && data.role === "employee") {
-      // Employee trying owner page → redirect
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
       localStorage.setItem("first_name", data.first_name);
@@ -540,7 +539,7 @@ function buildOrderCard(order) {
     addBtn(btnRow, "Cancel Order",     "btn-cancel",  () => openCancelModal(order.order_id));
   } else if (order.status === "Ready") {
     addBtn(btnRow, "Picked-Up",        "btn-pickup",  () => updateStatus(order.order_id, "Picked Up"));
-  }
+}
 
   div.appendChild(btnRow);
   return div;
@@ -675,7 +674,6 @@ function loadVendorDropdowns() {
   .then(vendors => {
     vendorList = vendors;
 
-    // Main vendor select
     const sel = document.getElementById("vendorSelect");
     sel.innerHTML = '<option value="">— Select Vendor —</option>';
     vendors.forEach(v => {
@@ -685,7 +683,6 @@ function loadVendorDropdowns() {
       sel.appendChild(o);
     });
 
-    // Filter dropdown in past orders section
     const filterSel = document.getElementById("vendorFilterSelect");
     filterSel.innerHTML = '<option value="">All Vendors</option>';
     vendors.forEach(v => {
@@ -738,7 +735,6 @@ function submitVendorOrder() {
   const selectedOpt = itemSel.options[itemSel.selectedIndex];
   const unit_cost   = parseFloat(selectedOpt?.dataset?.cost || 0);
 
-  // Get item name from inventory items
   const itemId = itemSel.value;
   const item   = inventoryItems.find(i => String(i.id) === String(itemId));
   const item_name = item ? item.item_name : selectedOpt?.text || "";
@@ -847,7 +843,7 @@ function loadRevenue() {
       return;
     }
     let allTime  = 0, allOrders = 0;
-    const nowYM  = new Date().toISOString().slice(0,7); // YYYY-MM
+    const nowYM  = new Date().toISOString().slice(0,7);
     let monthRev = 0;
 
     tbody.innerHTML = rows.map(r => {
