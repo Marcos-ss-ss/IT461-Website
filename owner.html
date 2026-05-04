@@ -12,7 +12,7 @@
       --blue-light: #e3f2fd; --white: #ffffff; --gray: #f5f7fa; --text: #1a1a2e;
     }
     body { font-family: 'Nunito', sans-serif; background: var(--gray); color: var(--text); display: flex; min-height: 100vh; }
- 
+
     /* ── SIDEBAR ── */
     .sidebar { width: 200px; min-height: 100vh; background: var(--navy); display: flex; flex-direction: column; align-items: center; position: fixed; top: 0; left: 0; z-index: 100; }
     .sidebar .logo-btn { width: 100%; display: block; background: var(--blue); padding: 18px 10px; text-align: center; text-decoration: none; border-bottom: 3px solid rgba(0,0,0,0.2); transition: background 0.2s; }
@@ -27,7 +27,7 @@
     .sidebar .nav-bottom a:hover { background: #243545; transform: translateX(4px); }
     .sidebar .nav-bottom button.logout-btn { display: block; text-align: center; padding: 12px 16px; margin: 10px 16px 0; background: #7b1a1a; color: var(--white); border: none; cursor: pointer; font-weight: 700; font-size: 0.88rem; border-radius: 8px; width: calc(100% - 32px); font-family: 'Nunito', sans-serif; transition: background 0.2s; }
     .sidebar .nav-bottom button.logout-btn:hover { background: #a02020; }
- 
+
     /* ── LOGIN OVERLAY ── */
     .login-overlay { display: flex; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 300; align-items: center; justify-content: center; }
     .login-box { background: var(--white); border-radius: 16px; padding: 48px 40px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
@@ -41,7 +41,7 @@
     .login-box .login-btn:hover { background: var(--blue-bright); }
     .login-box .back-link { display: block; margin-top: 16px; color: var(--blue); font-size: 0.85rem; text-decoration: none; cursor: pointer; }
     #loginError { color: #c0392b; font-size: 0.85rem; font-weight: 700; margin-top: -8px; margin-bottom: 12px; display: none; }
- 
+
     /* ── MAIN LAYOUT ── */
     .main-content { margin-left: 200px; flex: 1; display: flex; flex-direction: column; }
     #dashboardHome { padding: 50px 60px; }
@@ -53,14 +53,14 @@
     .dash-card .card-icon { font-size: 3rem; margin-bottom: 14px; }
     .dash-card h3 { font-family: 'Bebas Neue', cursive; font-size: 1.3rem; color: var(--navy); letter-spacing: 1px; margin-bottom: 8px; }
     .dash-card p { font-size: 0.85rem; color: #666; line-height: 1.5; }
- 
+
     .section-view { display: none; flex-direction: column; height: 100vh; }
     .section-view.active { display: flex; }
     .section-header { background: var(--navy); color: var(--white); padding: 16px 30px; display: flex; align-items: center; gap: 16px; flex-shrink: 0; justify-content: space-between; flex-wrap: wrap; }
     .section-header h2 { font-family: 'Bebas Neue', cursive; font-size: 1.5rem; letter-spacing: 2px; }
     .back-btn { background: rgba(255,255,255,0.15); color: var(--white); border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.85rem; transition: background 0.2s; }
     .back-btn:hover { background: rgba(255,255,255,0.25); }
- 
+
     /* ── ORDERS TABS ── */
     #ordersPanel { padding: 0 40px 30px; overflow-y: auto; height: 100%; }
     .tab-bar { display: flex; gap: 4px; padding: 20px 0 0; flex-wrap: wrap; }
@@ -69,7 +69,7 @@
     .tab-btn:hover:not(.active) { background: #c3d7f5; }
     .tab-content { display: none; padding-top: 20px; }
     .tab-content.active { display: block; }
- 
+
     /* ── ORDER CARDS ── */
     .order-card { background: var(--white); border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; border-left: 5px solid var(--blue); box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
     .order-card h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
@@ -78,10 +78,10 @@
     .order-card .btn-row button { padding: 8px 18px; border: none; border-radius: 6px; font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: opacity 0.2s; }
     .order-card .btn-row button:hover { opacity: 0.85; }
     .btn-confirm { background: #1565c0; color: #fff; }
-    .btn-ready   { background: #e65100; color: #fff; }
+    .btn-readyforpickup   { background: #e65100; color: #fff; }
     .btn-pickup  { background: #2e7d32; color: #fff; }
     .btn-cancel  { background: #c0392b; color: #fff; }
- 
+
     /* ── CREATE ORDER ── */
     .create-scroll { padding: 30px 40px; overflow-y: auto; height: 100%; }
     .field-label { font-weight: 800; font-size: 0.78rem; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 6px; margin-top: 16px; }
@@ -89,7 +89,7 @@
     .field-input:focus { outline: none; border-color: var(--blue); }
     .section-body { flex:1; overflow:hidden; }
     .section-body iframe { width:100%; height:100%; border:none; }
- 
+
     /* ── CANCEL MODAL ── */
     .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 500; align-items: center; justify-content: center; }
     .modal-backdrop.open { display: flex; }
@@ -102,7 +102,7 @@
     .modal-cancel-confirm:hover { background: #a93226; }
     .modal-go-back { background: #eee; color: #333; }
     .modal-go-back:hover { background: #ddd; }
- 
+
     /* ── VENDOR PAGE ── */
     .vendor-scroll { padding: 30px 40px; overflow-y: auto; height: 100%; }
     .vendor-form-card { background: #fff; border-radius: 12px; padding: 28px; max-width: 560px; border-top: 5px solid var(--blue); box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin-bottom: 36px; }
@@ -112,10 +112,10 @@
     .vendor-order-card h4 { font-size: 0.95rem; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
     .vendor-order-card p { font-size: 0.82rem; color: #555; margin-bottom: 3px; }
     select.field-input { appearance: none; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23555' d='M6 8L1 3h10z'/%3E%3C/svg%3E") no-repeat right 14px center; }
- 
+
     /* ── REVENUE PAGE ── */
-    .revenue-scroll { padding: 30px 40px 50px; overflow-y: auto; height: 100%; }
- 
+    .revenue-scroll { padding: 30px 40px; overflow-y: auto; height: 100%; }
+   
     /* Top action bar */
     .rev-action-bar { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
     .revenue-send-btn { background: #1565c0; color: #fff; border: none; padding: 13px 30px; border-radius: 8px; font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 0.95rem; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; gap: 8px; }
@@ -185,7 +185,7 @@
   </style>
 </head>
 <body>
- 
+
 <!-- CANCEL MODAL -->
 <div class="modal-backdrop" id="cancelModal">
   <div class="modal-box">
@@ -198,7 +198,7 @@
     </div>
   </div>
 </div>
- 
+
 <!-- LOGIN OVERLAY -->
 <div class="login-overlay" id="loginOverlay">
   <div class="login-box">
@@ -214,7 +214,7 @@
     <a class="back-link" href="index.html">← Back to main site</a>
   </div>
 </div>
- 
+
 <!-- SIDEBAR -->
 <nav class="sidebar">
   <a href="index.html" class="logo-btn"><img src="WDS-Logo.png" alt="WDS Home"></a>
@@ -230,9 +230,9 @@
     <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
 </nav>
- 
+
 <div class="main-content">
- 
+
   <!-- DASHBOARD HOME -->
   <div id="dashboardHome">
     <h1>Owner Dashboard</h1>
@@ -256,7 +256,7 @@
       </div>
     </div>
   </div>
- 
+
   <!-- CREATE ORDER -->
   <div class="section-view" id="createView">
     <div class="section-header">
@@ -289,7 +289,7 @@
       </div>
     </div>
   </div>
- 
+
   <!-- VIEW ORDERS (4 TABS) -->
   <div class="section-view" id="ordersView">
     <div class="section-header">
@@ -307,16 +307,16 @@
       <div class="tab-bar">
         <button class="tab-btn active" onclick="switchTab(event,'initiated')">🆕 Initiated Orders</button>
         <button class="tab-btn" onclick="switchTab(event,'inprogress')">⚙️ In-Progress Orders</button>
-        <button class="tab-btn" onclick="switchTab(event,'ready')">🟠 Ready for Pick-Up</button>
+        <button class="tab-btn" onclick="switchTab(event,'readyforpickup')">🟠 Ready for Pick-Up for Pick-Up</button>
         <button class="tab-btn" onclick="switchTab(event,'pickedup')">✅ Picked-Up / Completed</button>
       </div>
       <div class="tab-content active" id="tab-initiated"><p style="color:#888;">Loading...</p></div>
       <div class="tab-content" id="tab-inprogress"><p style="color:#888;">Loading...</p></div>
-      <div class="tab-content" id="tab-ready"><p style="color:#888;">Loading...</p></div>
+      <div class="tab-content" id="tab-readyforpickup"><p style="color:#888;">Loading...</p></div>
       <div class="tab-content" id="tab-pickedup"><p style="color:#888;">Loading...</p></div>
     </div>
   </div>
- 
+
   <!-- VENDORS & INVENTORY -->
   <div class="section-view" id="inventoryView">
     <div class="section-header">
@@ -326,39 +326,39 @@
       </div>
     </div>
     <div class="vendor-scroll">
- 
+
+      <!-- VENDOR INVENTORY TABLE -->
+      <div class="vendor-orders-title">📦 Current Inventory</div>
+      <div id="inventoryList"><p style="color:#888;">Loading inventory...</p></div>
+
       <!-- CREATE VENDOR ORDER FORM -->
-      <div class="vendor-form-card">
+      <div class="vendor-form-card" style="margin-top:30px;">
         <h3>📋 Create New Vendor Order</h3>
         <span class="field-label">Select Vendor</span>
         <select id="vendorSelect" class="field-input" onchange="loadVendorItems()">
           <option value="">— Select Vendor —</option>
         </select>
- 
+
         <span class="field-label">Select Item</span>
         <select id="itemSelect" class="field-input" onchange="updateItemCost()">
           <option value="">— Select Item —</option>
         </select>
- 
+
         <span class="field-label">Quantity</span>
         <input type="number" id="vendorQty" class="field-input" min="1" value="1"
           oninput="updateVendorTotal()" style="margin-bottom:12px;">
- 
+
         <div style="font-size:1rem;font-weight:800;color:var(--blue);margin:8px 0 16px;" id="vendorOrderTotal">
           Order Total: $0.00
         </div>
- 
+
         <button onclick="submitVendorOrder()"
           style="background:var(--blue);color:#fff;border:none;padding:13px 36px;border-radius:8px;font-weight:800;font-family:'Nunito',sans-serif;font-size:1rem;cursor:pointer;">
           ✅ Confirm Order
         </button>
         <div id="vendorOrderMsg" style="margin-top:12px;font-weight:700;"></div>
       </div>
- 
-      <!-- VENDOR INVENTORY TABLE -->
-      <div class="vendor-orders-title">📦 Current Inventory</div>
-      <div id="inventoryList"><p style="color:#888;">Loading inventory...</p></div>
- 
+
       <!-- PAST VENDOR ORDERS -->
       <div class="vendor-orders-title" style="margin-top:30px;">🗂️ Past Vendor Orders</div>
       <div style="display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;">
@@ -371,10 +371,10 @@
           style="max-width:220px;">
       </div>
       <div id="vendorOrdersList"><p style="color:#888;">Loading vendor orders...</p></div>
- 
+
     </div>
   </div>
- 
+
   <!-- SALES & REVENUE -->
   <div class="section-view" id="revenueView">
     <div class="section-header">
@@ -384,117 +384,59 @@
       </div>
     </div>
     <div class="revenue-scroll">
- 
-      <!-- ACTION BAR: Send Report + Period Toggle -->
-      <div class="rev-action-bar">
-        <button class="revenue-send-btn" id="sendReportBtn" onclick="sendRevenueReport()">
-          📧 Send Revenue Report
-        </button>
-        <div class="range-pill">
-          <button class="active" onclick="setRange('weekly',this)">Week</button>
-          <button onclick="setRange('monthly',this)">Month</button>
-          <button onclick="setRange('quarterly',this)">Quarter</button>
-          <button onclick="setRange('yearly',this)">Year</button>
-        </div>
-        <div id="revenueMsg" style="font-weight:700;font-size:0.88rem;"></div>
-      </div>
- 
-      <!-- KPI STAT CARDS -->
-      <div class="rev-kpi-row">
+
+      <button class="revenue-send-btn" onclick="sendRevenueReport()">
+        📧 Send Revenue Report
+      </button>
+      <div id="revenueMsg" style="margin-bottom:20px;font-weight:700;font-size:0.9rem;"></div>
+
+      <div class="revenue-stats" id="revenueStats">
         <div class="stat-card">
-          <div class="stat-val" id="statPeriodRev">—</div>
-          <div class="stat-lbl" id="statPeriodLbl">Period Revenue</div>
-        </div>
-        <div class="stat-card green">
-          <div class="stat-val" id="statProfit">—</div>
-          <div class="stat-lbl">Est. Profit</div>
-          <div class="stat-sub">(Rev − Vendor Costs)</div>
-        </div>
-        <div class="stat-card orange">
-          <div class="stat-val" id="statOrders">—</div>
-          <div class="stat-lbl">Orders Paid</div>
-          <div class="stat-sub" id="statOrdersSub">&nbsp;</div>
-        </div>
-        <div class="stat-card purple">
-          <div class="stat-val" id="statTopSvc">—</div>
-          <div class="stat-lbl">Top Service</div>
-          <div class="stat-sub" id="statTopSvcSub">&nbsp;</div>
-        </div>
-        <div class="stat-card teal">
-          <div class="stat-val" id="statAllTime">—</div>
+          <div class="stat-val" id="statTotal">—</div>
           <div class="stat-lbl">All-Time Revenue</div>
         </div>
-      </div>
- 
-      <!-- CHARTS ROW -->
-      <div class="rev-grid">
-        <div class="rev-panel">
-          <div class="rev-panel-title">📈 Revenue Over Time</div>
-          <div class="chart-wrap"><canvas id="revenueChart"></canvas></div>
+        <div class="stat-card">
+          <div class="stat-val" id="statOrders">—</div>
+          <div class="stat-lbl">Total Orders Paid</div>
         </div>
-        <div class="rev-panel">
-          <div class="rev-panel-title">🥧 Revenue by Service</div>
-          <div class="chart-wrap"><canvas id="serviceChart"></canvas></div>
+        <div class="stat-card">
+          <div class="stat-val" id="statMonth">—</div>
+          <div class="stat-lbl">This Month</div>
         </div>
       </div>
- 
-      <!-- BOTTOM SECTION: Revenue Table + Top Customers + Services -->
-      <div class="rev-grid">
- 
-        <!-- Revenue Breakdown Table with Profit Column -->
-        <div class="rev-panel">
-          <div class="rev-panel-title">📋 Period Breakdown</div>
-          <div style="overflow-x:auto;">
-            <table class="rev-table">
-              <thead>
-                <tr>
-                  <th>Period</th>
-                  <th>Revenue</th>
-                  <th>Orders</th>
-                  <th>Est. Profit</th>
-                </tr>
-              </thead>
-              <tbody id="revenueTableBody">
-                <tr><td colspan="4" style="text-align:center;color:#888;padding:20px;">Loading...</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
- 
-        <!-- Customer Lifetime Value -->
-        <div class="rev-panel">
-          <div class="rev-panel-title">👑 Customer Lifetime Value</div>
- 
-          <!-- Search by phone -->
-          <div class="cust-search-row">
-            <input type="tel" id="clvSearch" placeholder="Search by phone number…">
-            <button onclick="searchCLV()">Search</button>
-          </div>
-          <div class="cust-result-box" id="clvResult"></div>
- 
-          <!-- Top 3 -->
-          <div style="font-size:0.75rem;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin:14px 0 6px;">Top Spending Customers</div>
-          <div id="topCustomers"><p style="color:#888;font-size:0.85rem;">Loading...</p></div>
-        </div>
- 
+
+      <div style="display:flex;gap:12px;margin-bottom:16px;align-items:center;">
+        <label style="font-weight:800;font-size:0.78rem;color:var(--blue);text-transform:uppercase;">Period:</label>
+        <select id="rangeSelect" class="field-input" style="max-width:180px;" onchange="loadRevenue()">
+          <option value="monthly">Monthly</option>
+          <option value="daily">Daily</option>
+          <option value="quarterly">Quarterly</option>
+        </select>
       </div>
- 
-      <!-- TOP SERVICES BAR CHART (text-based) -->
-      <div class="rev-panel" style="margin-bottom:24px;">
-        <div class="rev-panel-title">🏆 Top-Selling Services</div>
-        <div id="topServicesPanel"><p style="color:#888;font-size:0.85rem;">Loading...</p></div>
-      </div>
- 
+
+      <table class="revenue-table" id="revenueTable">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th>Revenue</th>
+            <th>Orders Paid</th>
+          </tr>
+        </thead>
+        <tbody id="revenueTableBody">
+          <tr><td colspan="3" style="text-align:center;color:#888;padding:20px;">Loading...</td></tr>
+        </tbody>
+      </table>
+
     </div>
   </div>
- 
+
 </div><!-- end .main-content -->
- 
+
 <script>
 const API = "https://wds-drycleaning-group-8.onrender.com";
 let token = localStorage.getItem("token");
 let role  = localStorage.getItem("role");
- 
+
 // ── Guard: must be owner (or legacy worker) ──
 if (!token || (role !== "owner" && role !== "worker")) {
   document.getElementById("loginOverlay").style.display = "flex";
@@ -504,7 +446,7 @@ if (!token || (role !== "owner" && role !== "worker")) {
     "Welcome back, " + (localStorage.getItem("first_name") || "Owner") + "!";
   initOwnerDash();
 }
- 
+
 function initOwnerDash() {
   loadOrders();
   loadWorkerServices();
@@ -513,13 +455,13 @@ function initOwnerDash() {
   loadVendorOrders();
   loadRevenue();
 }
- 
+
 // ── LOGIN ──
 function ownerLogin() {
   const identifier = document.getElementById("empEmail").value.trim();
   const password   = document.getElementById("empPassword").value;
   document.getElementById("loginError").style.display = "none";
- 
+
   fetch(`${API}/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -539,7 +481,6 @@ function ownerLogin() {
       document.getElementById("welcomeMsg").textContent = "Welcome back, " + data.first_name + "!";
       initOwnerDash();
     } else if (data.token && data.role === "employee") {
-      // Employee trying owner page → redirect
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.role);
       localStorage.setItem("first_name", data.first_name);
@@ -554,12 +495,12 @@ function ownerLogin() {
     document.getElementById("loginError").textContent = "Server error. Please try again.";
   });
 }
- 
+
 function logout() {
   localStorage.clear();
   window.location.href = "index.html";
 }
- 
+
 // ── SECTION NAVIGATION ──
 function showSection(section) {
   document.getElementById("dashboardHome").style.display = "none";
@@ -575,14 +516,14 @@ function showSection(section) {
     if (section === "revenue")   loadRevenue();
   }
 }
- 
+
 // ══════════════════════════════════════════
 //  ORDERS
 // ══════════════════════════════════════════
 let allOrders  = [];
 let activeTab  = "initiated";
 let pendingCancelId = null;
- 
+
 function loadOrders() {
   if (!token) return;
   fetch(`${API}/orders`, { headers: { "Authorization": "Bearer " + token } })
@@ -592,7 +533,7 @@ function loadOrders() {
     document.getElementById("tab-initiated").innerHTML = "<p style='color:red;'>Error loading orders.</p>";
   });
 }
- 
+
 function switchTab(event, tab) {
   activeTab = tab;
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
@@ -601,7 +542,7 @@ function switchTab(event, tab) {
   document.getElementById("tab-" + tab).classList.add("active");
   renderTabs();
 }
- 
+
 function renderTabs() {
   const searchText = (document.getElementById("orderSearch")?.value || "").toLowerCase();
   const filtered = allOrders.filter(o =>
@@ -611,8 +552,8 @@ function renderTabs() {
   );
   const groups = {
     initiated:  filtered.filter(o => o.status === "Pending"),
-    inprogress: filtered.filter(o => o.status === "Confirmed"),
-    ready:      filtered.filter(o => o.status === "Ready"),
+    inprogress: filtered.filter(o => o.status === "In Progress"),
+    readyforpickup:      filtered.filter(o => o.status === "Ready for Pick-Up"),
     pickedup:   filtered.filter(o => o.status === "Picked Up"),
   };
   for (const [key, list] of Object.entries(groups)) {
@@ -625,7 +566,7 @@ function renderTabs() {
     }
   }
 }
- 
+
 function buildOrderCard(order) {
   const div = document.createElement("div");
   div.className = "order-card";
@@ -636,27 +577,26 @@ function buildOrderCard(order) {
     <p><strong>Total:</strong> $${parseFloat(order.total_cost).toFixed(2)} &nbsp;|&nbsp;
     <p><strong>Pickup:</strong> ${order.pickup_date || "Not set"}</p>
     <p><strong>Created:</strong> ${new Date(order.created_at).toLocaleString()}</p>`;
- 
+
   if (order.status === "Picked Up") return div;
- 
+
   const btnRow = document.createElement("div");
   btnRow.className = "btn-row";
- 
+
   if (order.status === "Pending") {
-    addBtn(btnRow, "Confirm Order",    "btn-confirm", () => updateStatus(order.order_id, "Confirmed"));
+    addBtn(btnRow, "Confirm Order",    "btn-confirm", () => updateStatus(order.order_id, "In Progress"));
     addBtn(btnRow, "Cancel Order",     "btn-cancel",  () => openCancelModal(order.order_id));
-  } else if (order.status === "Confirmed") {
-    addBtn(btnRow, "Ready for Pick-Up","btn-ready",   () => updateStatus(order.order_id, "Ready"));
+  } else if (order.status === "In Progress") {
+    addBtn(btnRow, "Ready for Pick-Up","btn-Ready for Pick-Up",   () => updateStatus(order.order_id, "Ready for Pick-Up"));
     addBtn(btnRow, "Cancel Order",     "btn-cancel",  () => openCancelModal(order.order_id));
-  } else if (order.status === "Ready") {
+  } else if (order.status === "Ready for Pick-Up") {
     addBtn(btnRow, "Picked-Up",        "btn-pickup",  () => updateStatus(order.order_id, "Picked Up"));
-    addBtn(btnRow, "Cancel Order",     "btn-cancel",  () => openCancelModal(order.order_id));
-  }
- 
+}
+
   div.appendChild(btnRow);
   return div;
 }
- 
+
 function addBtn(container, label, cls, handler) {
   const btn = document.createElement("button");
   btn.className = cls;
@@ -664,7 +604,7 @@ function addBtn(container, label, cls, handler) {
   btn.onclick = handler;
   container.appendChild(btn);
 }
- 
+
 function updateStatus(orderId, status) {
   fetch(`${API}/orders/${orderId}/status`, {
     method: "PATCH",
@@ -672,16 +612,16 @@ function updateStatus(orderId, status) {
     body: JSON.stringify({ status })
   }).then(() => loadOrders());
 }
- 
+
 function openCancelModal(orderId)  { pendingCancelId = orderId; document.getElementById("cancelModal").classList.add("open"); }
 function closeCancelModal()        { pendingCancelId = null;    document.getElementById("cancelModal").classList.remove("open"); }
 function confirmCancel()           { if (!pendingCancelId) return; updateStatus(pendingCancelId, "Cancelled"); closeCancelModal(); }
- 
+
 // ══════════════════════════════════════════
 //  CREATE ORDER
 // ══════════════════════════════════════════
 let workerServices = [];
- 
+
 function loadWorkerServices() {
   fetch(`${API}/services`)
   .then(res => res.json())
@@ -702,7 +642,7 @@ function loadWorkerServices() {
     });
   });
 }
- 
+
 function updateWorkerTotal() {
   let total = 0;
   document.querySelectorAll(".worker-qty").forEach(i => {
@@ -710,7 +650,7 @@ function updateWorkerTotal() {
   });
   document.getElementById("workerTotal").textContent = "Total: $" + total.toFixed(2);
 }
- 
+
 function searchCustomer() {
   const phone = document.getElementById("searchPhone").value.trim();
   if (!phone) return;
@@ -739,11 +679,11 @@ function searchCustomer() {
     form.style.display = "block";
   });
 }
- 
+
 function goToCreateAccount() {
   window.location.href = "./createAccount.html?phone=" + encodeURIComponent(document.getElementById("searchPhone").value.trim());
 }
- 
+
 function submitWorkerOrder() {
   const user_id       = document.getElementById("workerUserId").value;
   const pickup_date   = document.getElementById("wPickupDate").value || null;
@@ -773,20 +713,19 @@ function submitWorkerOrder() {
     }
   });
 }
- 
+
 // ══════════════════════════════════════════
 //  VENDOR ORDERS
 // ══════════════════════════════════════════
 let vendorList     = [];
 let inventoryItems = [];
- 
+
 function loadVendorDropdowns() {
   fetch(`${API}/vendors`, { headers: { "Authorization": "Bearer " + token } })
   .then(res => res.json())
   .then(vendors => {
     vendorList = vendors;
- 
-    // Main vendor select
+
     const sel = document.getElementById("vendorSelect");
     sel.innerHTML = '<option value="">— Select Vendor —</option>';
     vendors.forEach(v => {
@@ -795,8 +734,7 @@ function loadVendorDropdowns() {
       o.textContent = v.vendor_name;
       sel.appendChild(o);
     });
- 
-    // Filter dropdown in past orders section
+
     const filterSel = document.getElementById("vendorFilterSelect");
     filterSel.innerHTML = '<option value="">All Vendors</option>';
     vendors.forEach(v => {
@@ -808,14 +746,14 @@ function loadVendorDropdowns() {
   })
   .catch(() => {});
 }
- 
+
 function loadVendorItems() {
   const vendorId = document.getElementById("vendorSelect").value;
   const itemSel  = document.getElementById("itemSelect");
   itemSel.innerHTML = '<option value="">— Select Item —</option>';
   document.getElementById("vendorOrderTotal").textContent = "Order Total: $0.00";
   if (!vendorId) return;
- 
+
   fetch(`${API}/inventory-items?vendor_id=${vendorId}`, {
     headers: { "Authorization": "Bearer " + token }
   })
@@ -832,9 +770,9 @@ function loadVendorItems() {
   })
   .catch(() => {});
 }
- 
+
 function updateItemCost() { updateVendorTotal(); }
- 
+
 function updateVendorTotal() {
   const itemSel  = document.getElementById("itemSelect");
   const selected = itemSel.options[itemSel.selectedIndex];
@@ -842,24 +780,23 @@ function updateVendorTotal() {
   const qty      = parseInt(document.getElementById("vendorQty").value) || 0;
   document.getElementById("vendorOrderTotal").textContent = "Order Total: $" + (cost * qty).toFixed(2);
 }
- 
+
 function submitVendorOrder() {
   const vendor_id = document.getElementById("vendorSelect").value;
   const itemSel   = document.getElementById("itemSelect");
   const selectedOpt = itemSel.options[itemSel.selectedIndex];
   const unit_cost   = parseFloat(selectedOpt?.dataset?.cost || 0);
- 
-  // Get item name from inventory items
+
   const itemId = itemSel.value;
   const item   = inventoryItems.find(i => String(i.id) === String(itemId));
   const item_name = item ? item.item_name : selectedOpt?.text || "";
- 
+
   const quantity  = parseInt(document.getElementById("vendorQty").value) || 1;
   const msg       = document.getElementById("vendorOrderMsg");
- 
+
   if (!vendor_id) { msg.style.color="#c0392b"; msg.textContent="Please select a vendor."; return; }
   if (!itemId)    { msg.style.color="#c0392b"; msg.textContent="Please select an item."; return; }
- 
+
   fetch(`${API}/vendor-orders`, {
     method: "POST",
     headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token },
@@ -882,7 +819,7 @@ function submitVendorOrder() {
   })
   .catch(() => { msg.style.color="#c0392b"; msg.textContent="Server error. Please try again."; });
 }
- 
+
 function loadInventory() {
   fetch(`${API}/inventory`, { headers: { "Authorization": "Bearer " + token } })
   .then(res => res.json())
@@ -912,14 +849,14 @@ function loadInventory() {
   })
   .catch(() => { document.getElementById("inventoryList").innerHTML = "<p style='color:red;'>Error loading inventory.</p>"; });
 }
- 
+
 function loadVendorOrders() {
   const vendor_id = document.getElementById("vendorFilterSelect")?.value || "";
   const search    = document.getElementById("vendorOrderSearch")?.value || "";
   let url = `${API}/vendor-orders/search?`;
   if (vendor_id) url += `vendor_id=${vendor_id}&`;
   if (search)    url += `search=${encodeURIComponent(search)}`;
- 
+
   fetch(url, { headers: { "Authorization": "Bearer " + token } })
   .then(res => res.json())
   .then(orders => {
@@ -938,7 +875,7 @@ function loadVendorOrders() {
   })
   .catch(() => { document.getElementById("vendorOrdersList").innerHTML = "<p style='color:red;'>Error loading vendor orders.</p>"; });
 }
- 
+
 // ══════════════════════════════════════════
 //  REVENUE
 // ══════════════════════════════════════════
@@ -958,9 +895,9 @@ function loadRevenue() {
       return;
     }
     let allTime  = 0, allOrders = 0;
-    const nowYM  = new Date().toISOString().slice(0,7); // YYYY-MM
+    const nowYM  = new Date().toISOString().slice(0,7);
     let monthRev = 0;
- 
+
     tbody.innerHTML = rows.map(r => {
       const rev = parseFloat(r.total_revenue || 0);
       const ord = parseInt(r.orders_paid || 0);
@@ -974,7 +911,7 @@ function loadRevenue() {
         <td>${ord}</td>
       </tr>`;
     }).join("");
- 
+
     document.getElementById("statTotal").textContent  = "$" + allTime.toFixed(2);
     document.getElementById("statOrders").textContent = allOrders;
     document.getElementById("statMonth").textContent  = "$" + monthRev.toFixed(2);
@@ -984,14 +921,14 @@ function loadRevenue() {
       '<tr><td colspan="3" style="text-align:center;color:red;">Error loading revenue data.</td></tr>';
   });
 }
- 
+
 function sendRevenueReport() {
   const btn = document.querySelector(".revenue-send-btn");
   const msg = document.getElementById("revenueMsg");
   btn.disabled = true;
   btn.textContent = "Sending...";
   msg.textContent = "";
- 
+
   fetch(`${API}/reports/send-revenue`, {
     method: "POST",
     headers: { "Content-Type": "application/json", "Authorization": "Bearer " + token }
@@ -1015,7 +952,7 @@ function sendRevenueReport() {
     msg.textContent = "Server error. Please try again.";
   });
 }
- 
+
 // ── KEYBOARD / AUTO-REFRESH ──
 document.getElementById("empPassword").addEventListener("keydown", e => {
   if (e.key === "Enter") ownerLogin();
