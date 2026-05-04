@@ -271,6 +271,10 @@
     </div>
     <div class="vendor-scroll">
 
+        <!-- VENDOR INVENTORY TABLE -->
+      <div class="vendor-orders-title">📦 Current Inventory</div>
+      <div id="inventoryList"><p style="color:#888;">Loading inventory...</p></div>
+      
       <!-- CREATE VENDOR ORDER FORM -->
       <div class="vendor-form-card">
         <h3>📋 Create New Vendor Order</h3>
@@ -298,10 +302,6 @@
         </button>
         <div id="vendorOrderMsg" style="margin-top:12px;font-weight:700;"></div>
       </div>
-
-      <!-- VENDOR INVENTORY TABLE -->
-      <div class="vendor-orders-title">📦 Current Inventory</div>
-      <div id="inventoryList"><p style="color:#888;">Loading inventory...</p></div>
 
       <!-- PAST VENDOR ORDERS -->
       <div class="vendor-orders-title" style="margin-top:30px;">🗂️ Past Vendor Orders</div>
@@ -540,7 +540,6 @@ function buildOrderCard(order) {
     addBtn(btnRow, "Cancel Order",     "btn-cancel",  () => openCancelModal(order.order_id));
   } else if (order.status === "Ready") {
     addBtn(btnRow, "Picked-Up",        "btn-pickup",  () => updateStatus(order.order_id, "Picked Up"));
-    addBtn(btnRow, "Cancel Order",     "btn-cancel",  () => openCancelModal(order.order_id));
   }
 
   div.appendChild(btnRow);
